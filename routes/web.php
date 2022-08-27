@@ -21,6 +21,7 @@ Route::get('/', function () {
    $quantity= Movie::count();
     return view('main',['movies'=>Movie::all()->random()]);
 });
-Route::get('/movies', function () {
-    return view('movies',['movies'=>Movie::all()]);
+Route::get('/quotes/{slug}', function ($slug) {
+    // dd($slug);
+    return view('movies',['movies'=>Movie::all(),'slug'=>$slug]);
 });

@@ -59,10 +59,10 @@
 
 <body class="flex h-screen justify-center">
     <div class="w-2/5 flex justify-start flex-col gap-12 mt-4 overflow-scroll scrollHide">
-        <h2 class="text-7xl text-white mt-16 self-start mb-12 pt-12 pl-1 pr-6 pb-12"><a href='#'>Fatty
-                Garfield</a></h2>
+        <h2 class="text-7xl text-white mt-16 self-start mb-12 pt-12 pl-1 pr-6 pb-12">Fatty
+            Garfield</h2>
 
-        @foreach ($movies as $movie)
+        @foreach ($movies->where('name', $slug) as $movie)
             <div class="self-start w-full h-fit rounded-tr-xl rounded-tl-xl rounded-br-xl rounded-bl-xl grid mb-14">
                 <div class="w-full h-full rounded-tr-xl rounded-tl-xl bck"
                     style="background-image: url('https://paperwriter.ca/wp-content/uploads/2022/08/Garfield-6-Fast-Things-We-Know-About-The-Chris-Pratt.jpg')">

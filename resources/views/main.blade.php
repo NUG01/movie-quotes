@@ -47,7 +47,7 @@
         </div>
         <p class="text-7xl text-white text-center mt-12">"{{ $movies->quote }}"</p>
         <h2 class="text-7xl text-white text-center mt-28 underline underline-offset-4"><a
-                href='#'>{{ $movies->name }}</a></h2>
+                href='/quotes/{{ $movies->name }}'>{{ $movies->name }}</a></h2>
 
     </div>
     <div class="flex absolute flex-col top-1/2 left-10 gap-2 -translate-y-1/2">
