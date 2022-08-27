@@ -45,9 +45,9 @@
         <div class="w-8/12 h-1/3 rounded-xl background bck"
             style="background-image: url('https://paperwriter.ca/wp-content/uploads/2022/08/Garfield-6-Fast-Things-We-Know-About-The-Chris-Pratt.jpg')">
         </div>
-        <p class="text-7xl text-white text-center mt-12">"What should i eat for the fucking dinner?!"</p>
-        <h2 class="text-7xl text-white text-center mt-28 underline underline-offset-4"><a href='#'>Fatty
-                Garfield</a></h2>
+        <p class="text-7xl text-white text-center mt-12">"{{ $movies->quote }}"</p>
+        <h2 class="text-7xl text-white text-center mt-28 underline underline-offset-4"><a
+                href='#'>{{ $movies->name }}</a></h2>
 
     </div>
     <div class="flex absolute flex-col top-1/2 left-10 gap-2 -translate-y-1/2">

@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
+use App\Models\Movie;
+use Illuminate\Database\Eloquent\Builder;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('main');
+    // return view('main',['movies'=>Movie::inRandomOrder()->get()]);
+   $quantity= Movie::count();
+    return view('main',['movies'=>Movie::all()->random()]);
 });
-Route::get('/movie', function () {
-    return view('movie');
+Route::get('/movies', function () {
+    return view('movies',['movies'=>Movie::all()]);
 });
