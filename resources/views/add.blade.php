@@ -23,7 +23,6 @@
 
         html {
             font-size: 62.5%;
-            font-family: 'Nunito', sans-serif;
         }
 
         body {
@@ -31,26 +30,10 @@
             background: radial-gradient(circle, rgba(78, 78, 78, 1) 0%, rgba(61, 59, 59, 1) 99%, rgba(61, 59, 59, 1) 100%);
         }
 
-
-        .scrollHide::-webkit-scrollbar {
-            display: none;
-        }
-
-
-        .scrollHide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
         .bck {
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-
-        }
-
-        .grid {
-            grid-template-rows: 4.2fr 1fr;
         }
     </style>
 
@@ -58,29 +41,38 @@
 </head>
 
 <body class="flex h-screen justify-center">
-    <div class="w-2/5 flex justify-start flex-col gap-12 mt-4 overflow-scroll scrollHide">
-        <h2 class="text-7xl text-white mt-16 self-start mb-12 pt-12 pl-1 pr-6 pb-12">{{ $slug }}</h2>
 
-        @foreach ($movies->where('name', $slug) as $movie)
-            <div class="self-start w-full h-fit rounded-tr-xl rounded-tl-xl rounded-br-xl rounded-bl-xl grid mb-14">
-                <div class="w-full h-full rounded-tr-xl rounded-tl-xl bck"
-                    style="background-image: url('storage/app/thumbnails/{{ $movie->thumbnail }}')">
-                </div>
-                <p
-                    class="text-5xl text-white text-start pt-12 pl-6 pr-6 pb-12 bg-white text-black rounded-br-xl rounded-bl-xl">
-                    "{{ $movie->quote }}"</p>
-            </div>
-        @endforeach
+    <form method="POST" action="/add/movie" enctype="multipart/form-data">
+        @csrf
+        <div>
+            <label for="name">Movie Name</label>
+            <input type="text" name="name" id="name" required>
+            @error('name')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+            @enderror
+        </div>
+        <div>
+            <label for="quote">Quote</label>
+            <input type="text" name="quote" id="quote" required>
+            @error('quote')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+            @enderror
+        </div>
+        <div>
+            <label for="thumbnail">Image</label>
+            <input type="file" name="thumbnail" id="thumbnail" required>
+            @error('thumbnail')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <button type="submit">Submit</button>
+
+
+    </form>
 
 
 
-
-
-
-
-
-
-    </div>
     <div class="flex absolute flex-col top-1/2 left-10 gap-2 -translate-y-1/2">
         <a href="#"><svg width="62" height="62" viewBox="0 0 66 62" fill="none"
                 xmlns="http://www.w3.org/2000/svg">

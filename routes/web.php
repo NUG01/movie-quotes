@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
 use App\Models\Movie;
-use Illuminate\Database\Eloquent\Builder;
+use App\Http\Controllers\MovieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,11 +16,17 @@ use Illuminate\Database\Eloquent\Builder;
 */
 
 Route::get('/', function () {
-    // return view('main',['movies'=>Movie::inRandomOrder()->get()]);
-   $quantity= Movie::count();
-    return view('main',['movies'=>Movie::all()->random()]);
+	// return view('main',['movies'=>Movie::inRandomOrder()->get()]);
+	$quantity = Movie::count();
+	return view('main', ['movies'=>Movie::all()->random()]);
 });
 Route::get('/quotes/{slug}', function ($slug) {
-    // dd($slug);
-    return view('movies',['movies'=>Movie::all(),'slug'=>$slug]);
+	// dd($slug);
+	return view('movies', ['movies'=>Movie::all(), 'slug'=>$slug]);
 });
+
+
+
+
+Route::get('/add/movie',[MovieController::class,'show']);
+Route::post('/add/movie',[MovieController::class,'store']);

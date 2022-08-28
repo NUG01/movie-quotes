@@ -43,7 +43,7 @@
 <body class="flex h-screen justify-center">
     <div class="w-1/2 flex items-center justify-center flex-col gap-12 mt-12">
         <div class="w-8/12 h-1/3 rounded-xl background bck"
-            style="background-image: url('https://paperwriter.ca/wp-content/uploads/2022/08/Garfield-6-Fast-Things-We-Know-About-The-Chris-Pratt.jpg')">
+            style="background-image: url('storage/app/thumbnails/{{ $movies->thumbnail }}')">
         </div>
         <p class="text-7xl text-white text-center mt-12">"{{ $movies->quote }}"</p>
         <h2 class="text-7xl text-white text-center mt-28 underline underline-offset-4"><a
