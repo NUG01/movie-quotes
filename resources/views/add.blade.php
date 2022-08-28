@@ -41,32 +41,39 @@
 </head>
 
 <body class="flex h-screen justify-center">
+    <p class="absolute top-0 left-0 translate-y-1/2 translate-x-1/2 text-5xl text-white"><a href="/">Main</a></p>
 
-    <form method="POST" action="/add/movie" enctype="multipart/form-data">
+    <form method="POST" action="/add/movie" enctype="multipart/form-data" class="flex items-center w-2/12">
         @csrf
-        <div>
-            <label for="name">Movie Name</label>
-            <input type="text" name="name" id="name" required>
-            @error('name')
-                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-            @enderror
-        </div>
-        <div>
-            <label for="quote">Quote</label>
-            <input type="text" name="quote" id="quote" required>
-            @error('quote')
-                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-            @enderror
-        </div>
-        <div>
-            <label for="thumbnail">Image</label>
-            <input type="file" name="thumbnail" id="thumbnail" required>
-            @error('thumbnail')
-                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-            @enderror
-        </div>
+        <div class="flex flex-col gap-8 w-full">
+            <div class="flex flex-col">
+                <label for="name" class="block mb-2 uppercase font-bold text-lg text-white">Movie Name</label>
+                <input type="text" name="name" id="name"
+                    class="p-2 w-full rounded-lg h-16 font-semibold text-xl" required>
+                @error('name')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="flex flex-col">
+                <label for="quote" class="block mb-2 uppercase font-bold text-lg text-white">Quote</label>
+                <textarea type="text" name="quote" id="quote" class="p-2 w-full rounded-lg h-16 max-h-32 font-semibold text-xl"
+                    required></textarea>
+                @error('quote')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="flex flex-col">
+                <label for="thumbnail" class="block mb-2 uppercase font-bold text-lg text-white">Image</label>
+                <input type="file" name="thumbnail" class="border border-gray-400 p-2 w-full rounded-lg"
+                    id="thumbnail" required>
+                @error('thumbnail')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
 
-        <button type="submit">Submit</button>
+            <button type="submit"
+                class="bg-white text-black uppercase font-semibold text-2xl py-2 px-10 rounded-2xl hover:bg-gray-500 hover:text-white w-1/2 self-center mt-12 shadow-md">Submit</button>
+        </div>
 
 
     </form>
