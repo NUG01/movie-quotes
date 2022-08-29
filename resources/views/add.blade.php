@@ -81,7 +81,7 @@
     </form>
 
 
-    <form method="POST" action="/add/movie" enctype="multipart/form-data" class="flex items-center w-2/12">
+    {{-- <form method="POST" action="/add/movie" enctype="multipart/form-data" class="flex items-center w-2/12">
         @csrf
         <div class="flex flex-col gap-8 w-full">
             <div class="flex flex-col relative">
@@ -118,7 +118,7 @@
         </div>
 
 
-    </form>
+    </form> --}}
 
 
 

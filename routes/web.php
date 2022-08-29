@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Movie;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\LoginController;
 
 /*
@@ -31,6 +32,7 @@ Route::get('quotes/{slug}', function ($slug) {
 
 Route::get('add/movie',[MovieController::class,'show']);
 Route::post('add/movie',[MovieController::class,'store']);
+Route::post('add/movie',[QuoteController::class,'store']);
 
 
 Route::get('login',[LoginController::class,'create'])->middleware('guest');
