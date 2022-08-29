@@ -34,13 +34,18 @@ class MovieController extends Controller
     'thumbnail'=>'required|image'
    ]);
 
-
+   $attributes['thumbnail']=$file;
 
    // Movie::create($attributes);
    // Quote::create($attributes);
    Movie::create([
       'name' => $attributes['name'],
-  ]);
+  ]);  
+  Quote::create([
+   'movies_id' => $attributes['name'],
+   'quote' => $attributes['quote'],
+   'thumbnail' =>$attributes['thumbnail'],
+]);
 
    // session()->flash('success','Movie has been added.');
    return redirect('/add/movie')->with('success','Movie has been added');
