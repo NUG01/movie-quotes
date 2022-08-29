@@ -18,7 +18,7 @@ use App\Http\Controllers\LoginController;
 
 Route::get('/', function () {
 	// return view('main',['movies'=>Movie::inRandomOrder()->get()]);
-	$quantity = Movie::count();
+	// $quantity = Movie::count();
 	return view('main', ['movies'=>Movie::all()->random()]);
 });
 Route::get('quotes/{slug}', function ($slug) {
