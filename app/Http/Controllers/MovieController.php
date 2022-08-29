@@ -12,7 +12,7 @@ class MovieController extends Controller
    {
       $unique = Movie::all()->unique('name');
      
-      return view('add', ['movies'=>$unique]);
+      return view('addMovie', ['movies'=>$unique]);
    }
    
 
@@ -20,32 +20,17 @@ class MovieController extends Controller
 
    public function store()
    {
-   
-    if (request()->file('thumbnail') == null) {
-        $file = "";
-    }else{
-       $file = request()->file('thumbnail')->store('thumbnails');  
-    }
 
-//    $path=request()->file('thumbnail')->store('thumbnails');
   $attributes= request()->validate([
-    'name'=>'required',
-    'quote'=>'required|max:255|min:7|unique:movies,quote',
-    'thumbnail'=>'required|image'
+    'name'=>'required|unique:movies'
    ]);
 
-   $attributes['thumbnail']=$file;
 
    // Movie::create($attributes);
-   // Quote::create($attributes);
+
    Movie::create([
       'name' => $attributes['name'],
   ]);  
-  Quote::create([
-   'movies_id' => $attributes['name'],
-   'quote' => $attributes['quote'],
-   'thumbnail' =>$attributes['thumbnail'],
-]);
 
    // session()->flash('success','Movie has been added.');
    return redirect('/add/movie')->with('success','Movie has been added');

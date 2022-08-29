@@ -41,40 +41,32 @@
     <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
 </head>
 
-<body class="flex h-screen justify-center">
+<body class="flex gap-64 h-screen justify-center">
+    <p class="absolute top-0 left-0 translate-y-1/2 translate-x-1/2 text-5xl text-white hover:drop-shadow-xl"><a
+            href="/">Main</a></p>
 
-    @auth
-        <div class="flex absolute top-0 right-0 translate-y-3/4 -translate-x-1/4 gap-12">
-            <form method="POST" action="/logout" class="order-2">
-                @csrf
-                <button type="submit"
-                    class="bg-gray-500 py-4 px-8 rounded-xl drop-shadow-xl text-5xl text-white hover:drop-shadow-xl hover:text-gray-600 hover:bg-slate-50">Log
-                    Out</button>
-            </form>
-            <a href="add/movie"
-                class="order-1 bg-gray-500 py-4 px-8 rounded-xl drop-shadow-xl text-5xl text-white hover:drop-shadow-xl hover:text-gray-600 hover:bg-slate-50">C.R.U.D
-            </a>
+    <form method="POST" action="/add/movie" enctype="multipart/form-data" class="flex items-center w-2/12">
+        @csrf
+        <div class="flex flex-col gap-8 w-full">
+            <div class="flex flex-col relative">
+                <label for="name" class="block mb-2 uppercase font-bold text-lg text-white">Movie Name</label>
+                <input type="text" name="name" id="name"
+                    class="p-2 w-full rounded-lg h-16 font-semibold text-xl" required>
+                @error('name')
+                    <p class="text-red-500 text-lg mt-1 absolute bottom-0 left-0 translate-y-full">{{ $message }}</p>
+                @enderror
+            </div>
+
+
+            <button type="submit"
+                class="bg-white text-black uppercase font-bold text-2xl py-2 px-10 rounded-2xl hover:bg-gray-500 hover:text-white w-1/2 self-center mt-12 shadow-md">Submit</button>
         </div>
-    @else
-        <p
-            class="absolute top-0 right-0 translate-y-3/4 bg-gray-500 py-4 px-8 rounded-xl drop-shadow-xl -translate-x-1/2 text-5xl text-white hover:drop-shadow-xl hover:text-gray-600 hover:bg-slate-50">
-            <a href="/login">Log In</a>
-        </p>
-    @endauth
-    {{-- @dd($movies->random()->quote->first()->quote) --}}
 
-    <div class="w-1/2 flex items-center justify-center flex-col gap-12 mt-12">
-        {{-- <img class="w-8/12 h-1/3 rounded-xl background bck" src='{{ asset("storage/$movies->thumbnail") }}' /> --}}
-        <div class="w-8/12 h-1/3 rounded-xl background bck"
-            style="background-image: url('/storage/{{ $movies->quote->first()->thumbnail }}')"></div>
 
-        <p class="text-7xl
-            text-white text-center mt-12">"{{ $movies->quote->first()->quote }}"
-        </p>
-        <h2 class="text-7xl text-white text-center mt-28 underline underline-offset-4"><a
-                href='/quotes/{{ $movies->name }}'>{{ $movies->name }}</a></h2>
+    </form>
 
-    </div>
+
+
     <div class="flex absolute flex-col top-1/2 left-10 gap-2 -translate-y-1/2">
         <a href="#"><svg width="62" height="62" viewBox="0 0 66 62" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -91,6 +83,7 @@
                     fill="#171717" />
             </svg></a>
     </div>
+
     @if (session()->has('success'))
         <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show"
             class="fixed bg-gray-500 py-2 px-4 rounded-xl bottom-12 right-12 text-3xl drop-shadow-xl">

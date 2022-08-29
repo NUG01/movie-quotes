@@ -19,7 +19,7 @@ use App\Http\Controllers\LoginController;
 
 Route::get('/', function () {
 	// return view('main',['movies'=>Movie::inRandomOrder()->get()]);
-	$quantity = Movie::count();
+	// $quantity = Movie::count();
 	return view('main', ['movies'=>Movie::all()->random()]);
 });
 Route::get('quotes/{slug}', function ($slug) {
@@ -33,6 +33,10 @@ Route::get('quotes/{slug}', function ($slug) {
 Route::get('add/movie',[MovieController::class,'show']);
 Route::post('add/movie',[MovieController::class,'store']);
 
+Route::get('add/quote',function(){
+ return view('addQuote',['allMovie'=>Movie::all()]);
+});
+Route::post('add/quote',[QuoteController::class,'store']);
 
 Route::get('login',[LoginController::class,'create'])->middleware('guest');
 Route::post('login',[LoginController::class,'store'])->middleware('guest');

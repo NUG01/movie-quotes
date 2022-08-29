@@ -15,4 +15,8 @@ class Quote extends Model
 		'quote',
 		'thumbnail',
 	];
+
+    public function movie(){
+        return	$this->belongsTo(Movie::class);
+        }
 }

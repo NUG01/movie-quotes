@@ -71,12 +71,12 @@
         @foreach ($movies->where('name', $slug) as $movie)
             <div class="self-start w-full h-fit rounded-tr-xl rounded-tl-xl rounded-br-xl rounded-bl-xl grid mb-14">
                 <div class="w-full h-full rounded-tr-xl rounded-tl-xl bck"
-                    style="background-image: url('/storage/{{ $movie->thumbnail }}')">
+                    style="background-image: url('/storage/{{ $movie->quote->first()->thumbnail }}')">
 
                 </div>
                 {{-- <img class="w-auto h-full rounded-tr-xl rounded-tl-xl" src='{{ asset("storage/$movie->thumbnail") }}' /> --}}
                 <p class="text-5xl text-start pt-12 pl-6 pr-6 pb-12 bg-white text-black rounded-br-xl rounded-bl-xl">
-                    "{{ $movie->quote }}"</p>
+                    "{{ $movie->quote->first()->quote }}"</p>
             </div>
         @endforeach
 
