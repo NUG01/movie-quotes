@@ -23,7 +23,6 @@
 
         html {
             font-size: 62.5%;
-            font-family: 'Nunito', sans-serif;
         }
 
         body {
@@ -31,64 +30,51 @@
             background: radial-gradient(circle, rgba(78, 78, 78, 1) 0%, rgba(61, 59, 59, 1) 99%, rgba(61, 59, 59, 1) 100%);
         }
 
-
-        .scrollHide::-webkit-scrollbar {
-            display: none;
-        }
-
-
-        .scrollHide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
         .bck {
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-
-
-        }
-
-        .grid {
-            grid-template-rows: 4.2fr 1fr;
         }
     </style>
 
     @vite('resources/css/app.css')
-    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
 </head>
 
 <body class="flex h-screen justify-center">
-    <a href="/">
-        <ion-icon name="arrow-round-back"
-            class="absolute top-0 left-0 translate-y-1/2 translate-x-full text-6xl text-white hover:drop-shadow-xl">
-        </ion-icon>
-    </a>
-    <div class="w-2/5 flex justify-start flex-col gap-12 mt-4 overflow-scroll scrollHide">
-        <h2 class="text-7xl text-white mt-16 self-start mb-12 pt-12 pl-1 pr-6 pb-12">{{ $slug }}</h2>
+    <p class="absolute top-0 left-0 translate-y-1/2 translate-x-1/2 text-5xl text-white hover:drop-shadow-xl"><a
+            href="/">Main</a></p>
 
-        @foreach ($movies->where('name', $slug) as $movie)
-            <div class="self-start w-full h-fit rounded-tr-xl rounded-tl-xl rounded-br-xl rounded-bl-xl grid mb-14">
-                <div class="w-full h-full rounded-tr-xl rounded-tl-xl bck"
-                    style="background-image: url('/storage/{{ $movie->thumbnail }}')">
-
-                </div>
-                {{-- <img class="w-auto h-full rounded-tr-xl rounded-tl-xl" src='{{ asset("storage/$movie->thumbnail") }}' /> --}}
-                <p class="text-5xl text-start pt-12 pl-6 pr-6 pb-12 bg-white text-black rounded-br-xl rounded-bl-xl">
-                    "{{ $movie->quote }}"</p>
+    <form method="POST" action="/login" class="flex items-center w-2/12">
+        @csrf
+        <div class="flex flex-col gap-8 w-full">
+            <div class="flex flex-col relative">
+                <label for="username" class="block mb-2 uppercase font-bold text-lg text-white">Username</label>
+                <input type="text" name="username" id="username"
+                    class="p-2 w-full rounded-lg h-16 font-semibold text-xl" required>
+                @error('username')
+                    <p class="text-red-500 text-lg mt-1 absolute bottom-0 left-0 translate-y-full">{{ $message }}</p>
+                @enderror
             </div>
-        @endforeach
+            <div class="flex flex-col relative">
+                <label for="password" class="block mb-2 uppercase font-bold text-lg text-white">Password</label>
+                <input type="password" name="password" id="password"
+                    class="p-2 w-full rounded-lg h-16 max-h-32 font-semibold text-xl" required>
+                @error('password')
+                    <p class="text-red-500 text-lg mt-1 absolute bottom-0 left-0 translate-y-full">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <button type="submit"
+                class="bg-white text-black uppercase font-bold text-2xl py-2 px-10 rounded-2xl hover:bg-gray-500 hover:text-white w-1/2 self-center mt-12 shadow-md">Log
+                In</button>
+        </div>
+
+
+    </form>
 
 
 
-
-
-
-
-
-
-    </div>
     <div class="flex absolute flex-col top-1/2 left-10 gap-2 -translate-y-1/2">
         <a href="#"><svg width="62" height="62" viewBox="0 0 66 62" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -105,6 +91,13 @@
                     fill="#171717" />
             </svg></a>
     </div>
+
+    @if (session()->has('success'))
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show"
+            class="fixed bg-gray-500 py-2 px-4 rounded-xl bottom-12 right-12 text-3xl drop-shadow-xl">
+            <p class="text-white font-semibold">{{ session('success') }}</p>
+        </div>
+    @endif
 </body>
 
 </html>

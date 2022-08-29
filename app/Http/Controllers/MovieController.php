@@ -30,7 +30,7 @@ class MovieController extends Controller
 //    $path=request()->file('thumbnail')->store('thumbnails');
   $attributes= request()->validate([
     'name'=>'required',
-    'quote'=>'required|max:255|min:7',
+    'quote'=>'required|max:255|min:7|unique:movies,quote',
     'thumbnail'=>'required|image'
    ]);
   
@@ -39,7 +39,9 @@ $attributes['thumbnail']=$file;
 
 
    Movie::create($attributes);
-//    return redirect('/');
+
+   // session()->flash('success','Movie has been added.');
+   return redirect('/add/movie')->with('success','Movie has been added');
    }
 
 

@@ -38,9 +38,28 @@
     </style>
 
     @vite('resources/css/app.css')
+    <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
 </head>
 
 <body class="flex h-screen justify-center">
+    @auth
+        <div class="flex absolute top-0 right-0 translate-y-3/4 -translate-x-1/4 gap-12">
+            <form method="POST" action="/logout" class="order-2">
+                @csrf
+                <button type="submit"
+                    class="bg-gray-500 py-4 px-8 rounded-xl drop-shadow-xl text-5xl text-white hover:drop-shadow-xl hover:text-gray-600 hover:bg-slate-50">Log
+                    Out</button>
+            </form>
+            <a href="add/movie"
+                class="order-1 bg-gray-500 py-4 px-8 rounded-xl drop-shadow-xl text-5xl text-white hover:drop-shadow-xl hover:text-gray-600 hover:bg-slate-50">C.R.U.D
+            </a>
+        </div>
+    @else
+        <p
+            class="absolute top-0 right-0 translate-y-3/4 bg-gray-500 py-4 px-8 rounded-xl drop-shadow-xl -translate-x-1/2 text-5xl text-white hover:drop-shadow-xl hover:text-gray-600 hover:bg-slate-50">
+            <a href="/login">Log In</a>
+        </p>
+    @endauth
     <div class="w-1/2 flex items-center justify-center flex-col gap-12 mt-12">
         {{-- <img class="w-8/12 h-1/3 rounded-xl background bck" src='{{ asset("storage/$movies->thumbnail") }}' /> --}}
 
@@ -69,6 +88,12 @@
                     fill="#171717" />
             </svg></a>
     </div>
+    @if (session()->has('success'))
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show"
+            class="fixed bg-gray-500 py-2 px-4 rounded-xl bottom-12 right-12 text-3xl drop-shadow-xl">
+            <p class="text-white font-semibold">{{ session('success') }}</p>
+        </div>
+    @endif
 </body>
 
 </html>
