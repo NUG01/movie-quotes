@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Movie;
+use App\Http\Controllers\DB;
 
 class MovieController extends Controller
 {
    public function show()
    {
-    return view('add');
+      $unique = Movie::all()->unique('name');
+     
+      return view('add', ['movies'=>$unique]);
    }
+   
 
-   public function create()
-   {
-    return view('add');
-   }
 
 
    public function store()
