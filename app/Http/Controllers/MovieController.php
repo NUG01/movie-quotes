@@ -47,8 +47,24 @@ class MovieController extends Controller
 
 
 
-   public function delete()
-   {
-    return view('add');
+   
+
+
+   public function edit(Movie $movie)
+{
+    return view('editMovie',['movie'=>$movie,'allMovie'=>Movie::all()]);
+}
+
+    public function update(Movie $movie){
+         
+   
+      $attributes= request()->validate([
+         'name'=>'required|unique:movies'
+        ]);
+
+        
+        $movie->update($attributes);
+        
+        return redirect('/add/movie')->with('success','Movie has been updated!');
    }
 }

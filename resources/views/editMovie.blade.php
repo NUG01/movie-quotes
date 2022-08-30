@@ -53,31 +53,36 @@
 </head>
 
 <body class="flex flex-col gap-64 h-screen justify-center items-center">
-    <a href="/" class="absolute top-0 left-0 translate-y-1/2 translate-x-full">
+
+    <a href="/add/quote" class="absolute top-0 left-0 translate-y-1/2 translate-x-full">
         <ion-icon name="arrow-back-outline" class="text-6xl text-white hover:drop-shadow-xl">
         </ion-icon>
     </a>
 
-    <form method="POST" action="/add/movie" enctype="multipart/form-data" class="flex items-center w-2/12">
+    <form method="POST" action="/admin/movies/{{ $quote->id }}" class="flex items-center w-2/12">
         @csrf
+        @method('PATCH')
         <div class="flex flex-col gap-8 w-full">
+
+
             <div class="flex flex-col relative">
-                <label for="name" class="block mb-2 uppercase font-bold text-lg text-white">Movie Name</label>
-                <input type="text" name="name" id="name"
-                    class="p-2 w-full rounded-lg h-16 font-semibold text-xl" required>
+                <label for="name" class="block mb-2 uppercase font-bold text-lg text-white">Image</label>
+                <input type="text" name="name" class="border border-gray-400 p-2 w-full rounded-lg"
+                    id="name">
                 @error('name')
                     <p class="text-red-500 text-lg mt-1 absolute bottom-0 left-0 translate-y-full">{{ $message }}</p>
                 @enderror
             </div>
 
-
             <button type="submit"
-                class="bg-white text-black uppercase font-bold text-2xl py-2 px-10 rounded-2xl hover:bg-gray-500 hover:text-white w-1/2 self-center mt-8 shadow-md">Add
-                Movie</button>
+                class="bg-white text-black uppercase font-bold text-2xl py-2 px-10 rounded-2xl hover:bg-gray-500 hover:text-white w-1/2 self-center mt-12 shadow-md">Add
+                Quote</button>
         </div>
 
 
     </form>
+
+
 
     <div class="flex absolute flex-col top-1/2 left-10 gap-2 -translate-y-1/2">
         <a href="#"><svg width="62" height="62" viewBox="0 0 66 62" fill="none"
