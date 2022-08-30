@@ -79,6 +79,49 @@
 
     </form>
 
+    <div class="flex flex-col h-1/3 w-1/3 overflow-scroll scrollHide rounded-lg">
+        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            {{-- @dd($forTable) --}}
+                            @foreach ($forTable as $movie)
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="text-2xl font-xl text-gray-900">
+                                                <a href="/posts/{{ $movie->name }}">
+                                                    {{ $movie->name }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-2xl font-xl">
+                                        <a href="/admin/movies/{{ $movie->id }}/edit"
+                                            class="text-blue-500 hover:text-blue-600">Edit</a>
+                                    </td>
+
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-2xl font-xl">
+                                        <form method="POST" action="/admin/movies/{{ $movie->id }}">
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button class="text-2xl text-red-400">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <div class="flex absolute flex-col top-1/2 left-10 gap-2 -translate-y-1/2">
         <a href="#"><svg width="62" height="62" viewBox="0 0 66 62" fill="none"
                 xmlns="http://www.w3.org/2000/svg">

@@ -52,11 +52,11 @@ class MovieController extends Controller
 
    public function edit(Movie $movie)
 {
+  
     return view('editMovie',['movie'=>$movie,'allMovie'=>Movie::all()]);
 }
 
     public function update(Movie $movie){
-         
    
       $attributes= request()->validate([
          'name'=>'required|unique:movies'

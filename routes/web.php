@@ -62,5 +62,5 @@ Route::delete('admin/movies/{movie}',[MovieController::class,'destroy']);
 Route::get('admin/quotes/{quote}/edit',[QuoteController::class,'edit']);
 Route::patch('admin/quotes/{quote}',[QuoteController::class,'update']);
 
-Route::get('admin/movies/{quote}/edit',[MovieController::class,'edit']);
-Route::patch('admin/movies/{quote}',[MovieController::class,'update']);
+Route::get('admin/movies/{movie}/edit',[MovieController::class,'edit']);
+Route::patch('admin/movies/{movie}',[MovieController::class,'update']);
