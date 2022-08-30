@@ -23,6 +23,7 @@
 
         html {
             font-size: 62.5%;
+            font-family: 'Nunito', sans-serif;
         }
 
         body {
@@ -30,73 +31,50 @@
             background: radial-gradient(circle, rgba(78, 78, 78, 1) 0%, rgba(61, 59, 59, 1) 99%, rgba(61, 59, 59, 1) 100%);
         }
 
+
+        .scrollHide::-webkit-scrollbar {
+            display: none;
+        }
+
+
+        .scrollHide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
         .bck {
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+
+
+        }
+
+        .grid {
+            grid-template-rows: 4.2fr 1fr;
         }
     </style>
 
     @vite('resources/css/app.css')
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </head>
 
-<body class="flex h-screen justify-center">
+<body class="h-screen flex items-center justify-center gap-48">
+    <a href="/">
+        <ion-icon name="arrow-round-back"
+            class="absolute top-0 left-0 translate-y-1/2 translate-x-full text-6xl text-white hover:drop-shadow-xl">
+        </ion-icon>
+    </a>
 
-    @auth
-        <div class="flex flex-col absolute top-0 right-0 translate-y-2/4 -translate-x-2/4 gap-12">
-            <form method="POST" action="/logout" class="order-2">
-                @csrf
-                <button type="submit"
-                    class="order-1 bg-gray-500 py-4 px-8 rounded-xl drop-shadow-xl text-5xl text-white hover:drop-shadow-xl hover:text-gray-600 hover:bg-slate-50">Log
-                    Out</button>
-            </form>
-            <div class="order-2" x-data="{ show: false }">
-                <button @click="show = ! show"
-                    class=" bg-gray-500 py-4 px-8 rounded-xl drop-shadow-xl text-5xl text-white hover:drop-shadow-xl hover:text-gray-600 hover:bg-slate-50 w-full">C.R.U.D
-                    <span class="absolute -bottom-1/2 left-1/2 -translate-x-1/2 translate-y-px">
-                        <ion-icon name="caret-down-outline"></ion-icon>
-                    </span>
-                </button>
-                <div x-show="show" class="absolute w-full -bottom-6 translate-y-full right-0 rounded-xl text-4xl">
-                    <a href="/choose">
-                        <p
-                            class="rounded-tl-xl rounded-tr-xl w-full px-4 py-2 text-center text-gray-700 bg-slate-50 hover:drop-shadow-xl hover:bg-gray-600 hover:text-slate-50">
-                            Movies</p>
-                    </a>
-                    <a href="/choose">
-                        <p
-                            class="rounded-bl-xl rounded-br-xl w-full px-4 py-2 text-center text-gray-700 bg-slate-50 hover:drop-shadow-xl hover:bg-gray-600 hover:text-slate-50">
-                            Quotes</p>
-                    </a>
-                </div>
-
-
-            </div>
-
-        </div>
-    @else
-        <p
-            class="absolute top-0 right-0 translate-y-3/4 bg-gray-500 py-4 px-8 rounded-xl drop-shadow-xl -translate-x-1/2 text-5xl text-white hover:drop-shadow-xl hover:text-gray-600 hover:bg-slate-50">
-            <a href="/login">Log In</a>
-        </p>
-    @endauth
-    {{-- @dd($movies->random()->quote->first()->quote) --}}
-
-    <div class="w-1/2 flex items-center justify-center flex-col gap-12 mt-12">
-        {{-- <img class="w-8/12 h-1/3 rounded-xl background bck" src='{{ asset("storage/$movies->thumbnail") }}' /> --}}
-        <div class="w-8/12 h-1/3 rounded-xl background bck"
-            style="background-image: url('/storage/{{ $movies->quote->first()->thumbnail }}')"></div>
-
-        <p class="text-7xl
-            text-white text-center mt-12">"{{ $movies->quote->first()->quote }}"
-        </p>
-        <h2 class="text-7xl text-white text-center mt-28 underline underline-offset-4"><a
-                href='/quotes/{{ $movies->name }}'>{{ $movies->name }}</a></h2>
-
+    <div class="flex items-center justify-center">
+        <a href="/choose"
+            class="order-1 bg-gray-500 px-8 py-4 rounded-xl drop-shadow-xl text-5xl text-white hover:drop-shadow-xl hover:text-gray-600 hover:bg-slate-50">Movies
+        </a>
+        <a href="/choose"
+            class="order-1 bg-gray-500 py-4 px-8 rounded-xl drop-shadow-xl text-5xl text-white hover:drop-shadow-xl hover:text-gray-600 hover:bg-slate-50">Quotes
+        </a>
     </div>
+
     <div class="flex absolute flex-col top-1/2 left-10 gap-2 -translate-y-1/2">
         <a href="#"><svg width="62" height="62" viewBox="0 0 66 62" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -113,12 +91,6 @@
                     fill="#171717" />
             </svg></a>
     </div>
-    @if (session()->has('success'))
-        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show"
-            class="fixed bg-gray-500 py-2 px-4 rounded-xl bottom-12 right-12 text-3xl drop-shadow-xl">
-            <p class="text-white font-semibold">{{ session('success') }}</p>
-        </div>
-    @endif
 </body>
 
 </html>

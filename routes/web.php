@@ -28,7 +28,9 @@ Route::get('quotes/{slug}', function ($slug) {
 });
 
 
-
+Route::get('/choose',function(){
+	return view('choose');
+});
 
 Route::get('add/movie',[MovieController::class,'show']);
 Route::post('add/movie',[MovieController::class,'store']);
