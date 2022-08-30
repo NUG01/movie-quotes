@@ -57,3 +57,6 @@ Route::post('logout',[LoginController::class,'destroy'])->middleware('auth');
 
 Route::delete('admin/quotes/{quote}',[QuoteController::class,'destroy']);
 Route::delete('admin/movies/{movie}',[MovieController::class,'destroy']);
+
+
+// Route::get('admin')

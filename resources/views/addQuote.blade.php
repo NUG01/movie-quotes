@@ -113,7 +113,14 @@
                             @foreach ($quotes as $quote)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
+                                        <div class="flex gap-8 items-center">
+                                            <div class="flex-shrink-0 h-12 w-12">
+                                                <div class="rounded-full h-12 w-12 bck"
+                                                    style="background-image: url('/storage/{{ $quote->thumbnail }}')">
+
+                                                </div>
+                                            </div>
+
                                             <div class="text-2xl font-xl text-gray-900">
 
                                                 <a href="/posts/{{ $quote->movie->name }}">
