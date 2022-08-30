@@ -39,11 +39,15 @@
 
     @vite('resources/css/app.css')
     <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 
 <body class="flex gap-64 h-screen justify-center">
-    <p class="absolute top-0 left-0 translate-y-1/2 translate-x-1/2 text-5xl text-white hover:drop-shadow-xl"><a
-            href="/">Main</a></p>
+    <a href="/" class="absolute top-0 left-0 translate-y-1/2 translate-x-full">
+        <ion-icon name="arrow-back-outline" class="text-6xl text-white hover:drop-shadow-xl">
+        </ion-icon>
+    </a>
 
     <form method="POST" action="/add/movie" enctype="multipart/form-data" class="flex items-center w-2/12">
         @csrf
@@ -59,7 +63,8 @@
 
 
             <button type="submit"
-                class="bg-white text-black uppercase font-bold text-2xl py-2 px-10 rounded-2xl hover:bg-gray-500 hover:text-white w-1/2 self-center mt-12 shadow-md">Submit</button>
+                class="bg-white text-black uppercase font-bold text-2xl py-2 px-10 rounded-2xl hover:bg-gray-500 hover:text-white w-1/2 self-center mt-12 shadow-md">Add
+                Movie</button>
         </div>
 
 

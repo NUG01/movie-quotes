@@ -61,12 +61,12 @@
                     </span>
                 </button>
                 <div x-show="show" class="absolute w-full -bottom-6 translate-y-full right-0 rounded-xl text-4xl">
-                    <a href="/choose">
+                    <a href="/add/movie">
                         <p
                             class="rounded-tl-xl rounded-tr-xl w-full px-4 py-2 text-center text-gray-700 bg-slate-50 hover:drop-shadow-xl hover:bg-gray-600 hover:text-slate-50">
                             Movies</p>
                     </a>
-                    <a href="/choose">
+                    <a href="/add/quote">
                         <p
                             class="rounded-bl-xl rounded-br-xl w-full px-4 py-2 text-center text-gray-700 bg-slate-50 hover:drop-shadow-xl hover:bg-gray-600 hover:text-slate-50">
                             Quotes</p>

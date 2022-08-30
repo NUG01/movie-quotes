@@ -60,9 +60,8 @@
 </head>
 
 <body class="flex h-screen justify-center">
-    <a href="/">
-        <ion-icon name="arrow-round-back"
-            class="absolute top-0 left-0 translate-y-1/2 translate-x-full text-6xl text-white hover:drop-shadow-xl">
+    <a href="/" class="absolute top-0 left-0 translate-y-1/2 translate-x-full">
+        <ion-icon name="arrow-round-back" class="text-6xl text-white hover:drop-shadow-xl">
         </ion-icon>
     </a>
     <div class="w-2/5 flex justify-start flex-col gap-12 mt-4 overflow-scroll scrollHide">
