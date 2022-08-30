@@ -11,8 +11,9 @@ class MovieController extends Controller
    public function show()
    {
       $unique = Movie::all()->unique('name');
+      
      
-      return view('addMovie', ['movies'=>$unique]);
+      return view('addMovie', ['movies'=>$unique,'forTable'=>Movie::all()]);
    }
    
 

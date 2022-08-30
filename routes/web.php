@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Movie;
+use App\Models\Quote;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\LoginController;
@@ -36,7 +37,8 @@ Route::get('add/movie',[MovieController::class,'show']);
 Route::post('add/movie',[MovieController::class,'store']);
 
 Route::get('add/quote',function(){
- return view('addQuote',['allMovie'=>Movie::all()]);
+
+ return view('addQuote',['quotes'=>Quote::all(),'allMovie'=>Movie::all()]);
 });
 Route::post('add/quote',[QuoteController::class,'store']);
 

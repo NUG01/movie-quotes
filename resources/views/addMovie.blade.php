@@ -30,6 +30,15 @@
             background: radial-gradient(circle, rgba(78, 78, 78, 1) 0%, rgba(61, 59, 59, 1) 99%, rgba(61, 59, 59, 1) 100%);
         }
 
+        .scrollHide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollHide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
         .bck {
             background-position: center;
             background-repeat: no-repeat;
@@ -43,7 +52,7 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 
-<body class="flex gap-64 h-screen justify-center">
+<body class="flex flex-col gap-64 h-screen justify-center items-center">
     <a href="/" class="absolute top-0 left-0 translate-y-1/2 translate-x-full">
         <ion-icon name="arrow-back-outline" class="text-6xl text-white hover:drop-shadow-xl">
         </ion-icon>
@@ -63,12 +72,53 @@
 
 
             <button type="submit"
-                class="bg-white text-black uppercase font-bold text-2xl py-2 px-10 rounded-2xl hover:bg-gray-500 hover:text-white w-1/2 self-center mt-12 shadow-md">Add
+                class="bg-white text-black uppercase font-bold text-2xl py-2 px-10 rounded-2xl hover:bg-gray-500 hover:text-white w-1/2 self-center mt-8 shadow-md">Add
                 Movie</button>
         </div>
 
 
     </form>
+
+    <div class="flex flex-col h-1/3 w-1/3 overflow-scroll scrollHide rounded-lg">
+        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            {{-- @dd($forTable) --}}
+                            @foreach ($forTable as $movie)
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="text-2xl font-xl text-gray-900">
+                                                <a href="/posts/{{ $movie->name }}">
+                                                    {{ $movie->name }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-2xl font-xl">
+                                        <a href="/admin/posts/{{ $movie->id }}/edit"
+                                            class="text-blue-500 hover:text-blue-600">Edit</a>
+                                    </td>
+
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-2xl font-xl">
+                                        <form method="POST" action="/admin/posts/{{ $movie->id }}">
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button class="text-2xl text-red-400">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

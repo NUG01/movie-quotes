@@ -31,11 +31,9 @@
             background: radial-gradient(circle, rgba(78, 78, 78, 1) 0%, rgba(61, 59, 59, 1) 99%, rgba(61, 59, 59, 1) 100%);
         }
 
-
         .scrollHide::-webkit-scrollbar {
             display: none;
         }
-
 
         .scrollHide {
             -ms-overflow-style: none;
