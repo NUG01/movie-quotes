@@ -8,6 +8,14 @@ use App\Http\Controllers\DB;
 
 class MovieController extends Controller
 {
+
+
+   public function destroy(Movie $movie){
+      $movie->delete();
+      return redirect('/add/movie')->with('success','Movie has been deleted');
+}
+
+
    public function show()
    {
       $unique = Movie::all()->unique('name');

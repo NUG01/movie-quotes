@@ -9,10 +9,12 @@ use App\Http\Controllers\MovieController;
 
 class QuoteController extends Controller
 {
+    
+    public function destroy(Quote $quote){
+        $quote->delete();
+        return redirect('/add/quote')->with('success','Quote has been deleted');
+}
 
-// public function show(){
-//     return view('addQuote',['movies'=>Movie::all()]);
-// }
 
 
     public function store()
@@ -21,8 +23,7 @@ class QuoteController extends Controller
     if (request()->file('thumbnail') == null) {
         $file = "";
     }else{
-       $file = request()->file('thumbnail')->store('thumbnails');  
-    }
+       $file = request()->file('thumbnail')->store('thumbnails');  }
 
 //    $path=request()->file('thumbnail')->store('thumbnails'); 
 $attributes= request()->validate([
@@ -36,8 +37,8 @@ $attributes= request()->validate([
 // dd($attributes['movie_id']);
  
    Quote::create($attributes);  
-
    // session()->flash('success','Movie has been added.');
    return redirect('/add/quote')->with('success','Quote has been added');
    }
+
 }

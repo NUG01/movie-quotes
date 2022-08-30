@@ -21,7 +21,12 @@ use App\Http\Controllers\LoginController;
 Route::get('/', function () {
 	// return view('main',['movies'=>Movie::inRandomOrder()->get()]);
 	// $quantity = Movie::count();
-	return view('main', ['movies'=>Movie::all()->random()]);
+	if(Movie::all()->count()){
+
+		return view('main', ['movies'=>Movie::all()->random()]);
+	}else{
+		return 'Database is empty :)';
+	}
 });
 Route::get('quotes/{slug}', function ($slug) {
 	// dd($slug);
@@ -36,11 +41,13 @@ Route::get('/choose',function(){
 Route::get('add/movie',[MovieController::class,'show']);
 Route::post('add/movie',[MovieController::class,'store']);
 
+
+Route::post('add/quote',[QuoteController::class,'store']);
 Route::get('add/quote',function(){
 
  return view('addQuote',['quotes'=>Quote::all(),'allMovie'=>Movie::all()]);
 });
-Route::post('add/quote',[QuoteController::class,'store']);
+
 
 Route::get('login',[LoginController::class,'create'])->middleware('guest');
 Route::post('login',[LoginController::class,'store'])->middleware('guest');
@@ -48,4 +55,5 @@ Route::post('login',[LoginController::class,'store'])->middleware('guest');
 
 Route::post('logout',[LoginController::class,'destroy'])->middleware('auth');
 
-
+Route::delete('admin/quotes/{quote}',[QuoteController::class,'destroy']);
+Route::delete('admin/movies/{movie}',[MovieController::class,'destroy']);

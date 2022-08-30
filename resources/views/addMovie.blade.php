@@ -104,7 +104,7 @@
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-2xl font-xl">
-                                        <form method="POST" action="/admin/posts/{{ $movie->id }}">
+                                        <form method="POST" action="/admin/movies/{{ $movie->id }}">
                                             @csrf
                                             @method('DELETE')
 
