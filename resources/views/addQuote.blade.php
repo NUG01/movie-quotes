@@ -142,7 +142,7 @@
 
 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-2xl font-xl">
-                                        <a href="/admin/posts/{{ $quote->id }}/edit"
+                                        <a href="/admin/quotes/{{ $quote->id }}/edit"
                                             class="text-blue-500 hover:text-blue-600">Edit</a>
                                     </td>
 

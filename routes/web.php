@@ -22,8 +22,8 @@ Route::get('/', function () {
 	// return view('main',['movies'=>Movie::inRandomOrder()->get()]);
 	// $quantity = Movie::count();
 	if(Movie::all()->count()){
-
-		return view('main', ['movies'=>Movie::all()->random()]);
+   
+		return view('main', ['movies'=>Quote::all()->random()]);
 	}else{
 		return 'Database is empty :)';
 	}
@@ -59,4 +59,5 @@ Route::delete('admin/quotes/{quote}',[QuoteController::class,'destroy']);
 Route::delete('admin/movies/{movie}',[MovieController::class,'destroy']);
 
 
-// Route::get('admin')
+Route::get('admin/quotes/{quote}/edit',[QuoteController::class,'edit']);
+Route::patch('admin/quotes/{quote}',[QuoteController::class,'update']);

@@ -23,7 +23,6 @@
 
         html {
             font-size: 62.5%;
-            font-family: 'Nunito', sans-serif;
         }
 
         body {
@@ -44,53 +43,67 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-
-
-        }
-
-        .grid {
-            grid-template-rows: 4.2fr 1fr;
         }
     </style>
 
     @vite('resources/css/app.css')
-    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 
-<body class="flex h-screen justify-center">
-    <a href="/" class="absolute top-0 left-0 translate-y-1/2 translate-x-full">
-        <ion-icon name="arrow-round-back" class="text-6xl text-white hover:drop-shadow-xl">
+<body class="flex flex-col gap-64 h-screen justify-center items-center">
+
+    <a href="/add/quote" class="absolute top-0 left-0 translate-y-1/2 translate-x-full">
+        <ion-icon name="arrow-back-outline" class="text-6xl text-white hover:drop-shadow-xl">
         </ion-icon>
     </a>
-    {{-- @dd($movies->first()->quote->first()->thumbnail) --}}
-    <div class="w-2/5 flex justify-start flex-col gap-12 mt-4 overflow-scroll scrollHide">
-        <h2 class="text-7xl text-white mt-16 self-start mb-12 pt-12 pl-1 pr-6 pb-12">{{ $slug }}</h2>
-        {{-- @dd($movies, $slug) --}}
-        {{-- @dd(
-            $movies->where('name', $slug)->first()->quote->first()->quote,
-        ) --}}
 
-        @foreach ($movies->where('name', $slug)->first()->quote as $movie)
-            <div class="self-start w-full h-fit rounded-tr-xl rounded-tl-xl rounded-br-xl rounded-bl-xl grid mb-14">
-                <div class="w-full h-full rounded-tr-xl rounded-tl-xl bck"
-                    style="background-image: url('/storage/{{ $movie->thumbnail }}')">
+    <form method="POST" action="/admin/quotes/{{ $quote->id }}" enctype="multipart/form-data"
+        class="flex items-center w-2/12">
+        @csrf
+        @method('PATCH')
+        <div class="flex flex-col gap-8 w-full">
+            <div class="flex flex-col relative">
+                <label for="movie_id" class="block mb-2 uppercase font-bold text-lg text-white">Movie</label>
+                <select type="text" name="movie_id" id="movie_id" value="{{ $quote->movie->name }}"
+                    class="p-2 w-full rounded-lg h-16 max-h-32 font-semibold text-xl" required>
+                    @foreach ($allMovie as $movie)
+                        <option>{{ $movie->name }}</option>
+                    @endforeach
 
-                </div>
-                {{-- <img class="w-auto h-full rounded-tr-xl rounded-tl-xl" src='{{ asset("storage/$movie->thumbnail") }}' /> --}}
-                <p class="text-5xl text-start pt-12 pl-6 pr-6 pb-12 bg-white text-black rounded-br-xl rounded-bl-xl">
-                    "{{ $movie->quote }}"</p>
+                </select>
+                @error('movie_id')
+                    <p class="text-red-500 text-lg mt-1 absolute bottom-0 left-0 translate-y-full">{{ $message }}</p>
+                @enderror
             </div>
-        @endforeach
+            <div class="flex flex-col relative">
+                <label for="quote" class="block mb-2 uppercase font-bold text-lg text-white">Quote</label>
+                <textarea type="text" name="quote" id="quote" class="p-2 w-full rounded-lg h-16 max-h-32 font-semibold text-xl"
+                    required></textarea>
+                @error('quote')
+                    <p class="text-red-500 text-lg mt-1 absolute bottom-0 left-0 translate-y-full">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="flex flex-col relative">
+                <label for="thumbnail" class="block mb-2 uppercase font-bold text-lg text-white">Image</label>
+                <input type="file" name="thumbnail" class="border border-gray-400 p-2 w-full rounded-lg"
+                    id="thumbnail">
+                @error('thumbnail')
+                    <p class="text-red-500 text-lg mt-1 absolute bottom-0 left-0 translate-y-full">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <button type="submit"
+                class="bg-white text-black uppercase font-bold text-2xl py-2 px-10 rounded-2xl hover:bg-gray-500 hover:text-white w-1/2 self-center mt-12 shadow-md">Add
+                Quote</button>
+        </div>
+
+
+    </form>
 
 
 
-
-
-
-
-
-
-    </div>
     <div class="flex absolute flex-col top-1/2 left-10 gap-2 -translate-y-1/2">
         <a href="#"><svg width="62" height="62" viewBox="0 0 66 62" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -107,6 +120,13 @@
                     fill="#171717" />
             </svg></a>
     </div>
+
+    @if (session()->has('success'))
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show"
+            class="fixed bg-gray-500 py-2 px-4 rounded-xl bottom-12 right-12 text-3xl drop-shadow-xl">
+            <p class="text-white font-semibold">{{ session('success') }}</p>
+        </div>
+    @endif
 </body>
 
 </html>
