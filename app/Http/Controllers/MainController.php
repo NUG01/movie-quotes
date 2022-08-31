@@ -19,6 +19,6 @@ class MainController extends Controller
    }
    public function showQuotes($slug)
    {
-    return view('movies', ['movies'=>Movie::all(), 'slug'=>$slug]);
+        return view('movies', ['movies'=>Movie::all(), 'slug'=>$slug]);
    }
 }

@@ -11,7 +11,7 @@ class MovieController extends Controller
 
 
    public function destroy(Movie $movie){
-      $movie->delete();
+       $movie->delete();
       return redirect('/add/movie')->with('success','Movie has been deleted');
 }
 
@@ -19,8 +19,6 @@ class MovieController extends Controller
    public function show()
    {
       $unique = Movie::all()->unique('name');
-      
-     
       return view('addMovie', ['movies'=>$unique,'forTable'=>Movie::all()]);
    }
    
@@ -30,8 +28,8 @@ class MovieController extends Controller
    public function store()
    {
 
-  $attributes= request()->validate([
-    'name'=>'required|unique:movies'
+       $attributes= request()->validate([
+       'name'=>'required|unique:movies'
    ]);
 
 
@@ -41,11 +39,6 @@ class MovieController extends Controller
 
    return redirect('/add/movie')->with('success','Movie has been added');
    }
-
-
-
-   
-
 
    public function edit(Movie $movie)
 {

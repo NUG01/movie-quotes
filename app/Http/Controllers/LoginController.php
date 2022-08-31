@@ -12,26 +12,26 @@ class LoginController extends Controller
     // }
     public function store()
     {
-           $attributes= request()->validate([
+        $attributes= request()->validate([
              'username'=>'required',
              'password'=>'required'
-            ]);
+        ]);
 
-            if(auth()->attempt($attributes)){
+        if(auth()->attempt($attributes)){
                 session()->regenerate();
                   return redirect('/')->with('success','You have been logged in');
-            }
+        }
 
 
 
-            return redirect("/login")->withErrors(['username'=>'Provided username could not be verified','password'=>"Provided password is wrong"]);
+        return redirect("/login")->withErrors(['username'=>'Provided username could not be verified','password'=>"Provided password is wrong"]);
         
     }
 
     public function create()
     {
     
-      return view('login');
+    return view('login');
  
     }
 

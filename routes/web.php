@@ -23,10 +23,6 @@ Route::get('/', [MainController::class,'show']);
 Route::get('quotes/{slug}', [MainController::class,'showQuotes']);
 
 
-// Route::get('/choose',function(){
-// 	return view('choose');
-// });
-
 Route::get('add/movie',[MovieController::class,'show']);
 Route::post('add/movie',[MovieController::class,'store']);
 

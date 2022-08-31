@@ -26,19 +26,19 @@ public function show(){
     public function store()
    {
    
-    if (request()->file('thumbnail') == null) {
+        if (request()->file('thumbnail') == null) {
         $file = "";
     }else{
-       $file = request()->file('thumbnail')->store('thumbnails');  }
+         $file = request()->file('thumbnail')->store('thumbnails');  }
 
-$attributes= request()->validate([
-    'movie_id'=>'required',
-     'quote'=>'required|max:255|min:7|unique:quotes,quote',
-     'thumbnail'=>'required|image'
+        $attributes= request()->validate([
+             'movie_id'=>'required',
+             'quote'=>'required|max:255|min:7|unique:quotes,quote',
+             'thumbnail'=>'required|image'
     ]);
     
-    $attributes['thumbnail']=$file;
-   $attributes['movie_id']=Movie::where('name',$attributes['movie_id'])->first()->id;
+          $attributes['thumbnail']=$file;
+          $attributes['movie_id']=Movie::where('name',$attributes['movie_id'])->first()->id;
 
  
 Quote::create($attributes);  
