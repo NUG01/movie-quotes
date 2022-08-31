@@ -8,10 +8,10 @@ use App\Models\Movie;
 
 class MainController extends Controller
 {
-   public function show()
-   {
+    public function show()
+    {
+
     if(Movie::all()->count()){
-   
 		return view('main', ['movies'=>Quote::all()->random()]);
 	}else{
 		return 'Database is empty :)';

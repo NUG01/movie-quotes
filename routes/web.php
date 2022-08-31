@@ -7,6 +7,8 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\LanguageController;
+use Illuminate\Support\Facades\App;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,8 @@ use App\Http\Controllers\MainController;
 
 Route::get('/', [MainController::class,'show']);
 Route::get('quotes/{slug}', [MainController::class,'showQuotes']);
+
+Route::get('/change-locale/{locale}', [LanguageController::class,'locale'])->name('locale.change');
 
 
 Route::get('add/movie',[MovieController::class,'show']);

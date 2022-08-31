@@ -10,8 +10,7 @@
                 <form method="POST" action="/logout" class="order-2">
                     @csrf
                     <button type="submit"
-                        class="order-1 bg-gray-500 py-4 px-8 rounded-xl drop-shadow-xl text-5xl text-white hover:drop-shadow-xl hover:text-gray-600 hover:bg-slate-50">Log
-                        Out</button>
+                        class="order-1 bg-gray-500 py-4 px-8 rounded-xl drop-shadow-xl text-5xl text-white hover:drop-shadow-xl hover:text-gray-600 hover:bg-slate-50">{{ __('translate.Log_out') }}</button>
                 </form>
                 <div class="order-2" x-data="{ show: false }">
                     <button @click="show = ! show"
@@ -24,12 +23,12 @@
                         <a href="/add/movie">
                             <p
                                 class="rounded-tl-xl rounded-tr-xl w-full px-4 py-2 text-center text-gray-700 bg-slate-50 hover:drop-shadow-xl hover:bg-gray-600 hover:text-slate-50">
-                                Movies</p>
+                                {{ __('translate.movies') }}</p>
                         </a>
                         <a href="/add/quote">
                             <p
                                 class="rounded-bl-xl rounded-br-xl w-full px-4 py-2 text-center text-gray-700 bg-slate-50 hover:drop-shadow-xl hover:bg-gray-600 hover:text-slate-50">
-                                Quotes</p>
+                                {{ __('translate.quotes') }}</p>
                         </a>
                     </div>
 
@@ -38,15 +37,15 @@
 
             </div>
         @else
-            <p
+            <a href="/login"
                 class="absolute top-0 right-0 translate-y-3/4 bg-gray-500 py-4 px-8 rounded-xl drop-shadow-xl -translate-x-1/2 text-5xl text-white hover:drop-shadow-xl hover:text-gray-600 hover:bg-slate-50">
-                <a href="/login">Log In</a>
-            </p>
+                {{ __('translate.Log_in') }}
+            </a>
         @endauth
-    
+
 
         <div class="w-1/2 flex items-center justify-center flex-col gap-12 mt-12">
-       
+
 
             <div class="w-8/12 h-1/3 rounded-xl background bck"
                 @isset($movies->thumbnail) style="background-image: url('/storage/{{ $movies->thumbnail }}')"> @endisset
@@ -59,14 +58,14 @@
 
             </div>
             <div class="flex absolute flex-col top-1/2 left-10 gap-2 -translate-y-1/2">
-                <a href="#"><svg width="62" height="62" viewBox="0 0 66 62" fill="none"
+                <a href="/change-locale/en"><svg width="62" height="62" viewBox="0 0 66 62" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <circle cx="33" cy="29" r="28" stroke="white" stroke-width="2" />
                         <path
                             d="M26.1445 24.6953C29.6445 24.6953 31.3945 26.4258 31.3945 29.8867C31.3945 30.3789 31.3594 30.9062 31.2891 31.4688H22.6523C22.6523 33.9844 24.1211 35.2422 27.0586 35.2422C28.457 35.2422 29.6992 35.0859 30.7852 34.7734V36.5312C29.6992 36.8438 28.3789 37 26.8242 37C22.5977 37 20.4844 34.9023 20.4844 30.707C20.4844 26.6992 22.3711 24.6953 26.1445 24.6953ZM22.6523 29.6641H29.3086C29.2617 27.5078 28.207 26.4297 26.1445 26.4297C23.957 26.4297 22.793 27.5078 22.6523 29.6641ZM34.3125 37V24.6953H35.7773L36.1641 26.2656C37.4219 25.2188 38.8047 24.6953 40.3125 24.6953C43.3828 24.6953 44.918 26.2227 44.918 29.2773V37H42.75V29.2422C42.75 27.4141 41.8398 26.5 40.0195 26.5C38.7773 26.5 37.5977 27.0195 36.4805 28.0586V37H34.3125Z"
                             fill="white" />
                     </svg></a>
-                <a href="#"><svg width="62" height="62" viewBox="0 0 66 62" fill="none"
+                <a href="/change-locale/ka"><svg width="62" height="62" viewBox="0 0 66 62" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <circle cx="33" cy="29" r="28" fill="white" stroke="white"
                             stroke-width="2" />
