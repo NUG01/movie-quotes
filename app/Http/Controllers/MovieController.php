@@ -19,7 +19,12 @@ class MovieController extends Controller
    public function show()
    {
       $unique = Movie::all()->unique('name');
-      return view('addMovie', ['movies'=>$unique,'forTable'=>Movie::all()]);
+      if(!auth()->guest()){
+
+         return view('addMovie', ['movies'=>$unique,'forTable'=>Movie::all()]);
+      }else{
+         abort(404);
+      }
    }
    
 

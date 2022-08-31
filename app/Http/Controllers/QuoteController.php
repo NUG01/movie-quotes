@@ -12,7 +12,12 @@ class QuoteController extends Controller
 
 
 public function show(){
-    return view('addQuote',['quotes'=>Quote::all(),'allMovie'=>Movie::all()]);
+    if(!auth()->guest()){
+
+        return view('addQuote',['quotes'=>Quote::all(),'allMovie'=>Movie::all()]);
+    }else{
+        abort(404);
+    }
 }
 
     

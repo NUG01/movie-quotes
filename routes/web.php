@@ -31,8 +31,8 @@ Route::post('add/quote',[QuoteController::class,'store']);
 Route::get('add/quote',[QuoteController::class, 'show']);
 
 
-Route::get('login',[LoginController::class,'create'])->middleware('guest');
-Route::post('login',[LoginController::class,'store'])->middleware('guest');
+Route::get('login',[LoginController::class,'show']);
+Route::post('login',[LoginController::class,'store']);
 
 
 Route::post('logout',[LoginController::class,'destroy'])->middleware('auth');

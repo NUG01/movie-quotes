@@ -16,7 +16,7 @@ class LoginController extends Controller
              'username'=>'required',
              'password'=>'required'
         ]);
-
+        
         if(auth()->attempt($attributes)){
                 session()->regenerate();
                   return redirect('/')->with('success','You have been logged in');
@@ -27,8 +27,22 @@ class LoginController extends Controller
         return redirect("/login")->withErrors(['username'=>'Provided username could not be verified','password'=>"Provided password is wrong"]);
         
     }
-
+    
     public function create()
+    {
+        $attributes= request()->validate([
+             'username'=>'required|min:4',
+             'password'=>'required|min:6',
+             'email'=>'required'
+        ]);
+
+         $attributes['password']=>bcrypt($attributes['password']);
+
+        User::create($attributes);
+    
+ 
+    }
+    public function show()
     {
     
     return view('login');
