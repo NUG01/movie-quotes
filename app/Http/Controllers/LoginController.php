@@ -28,20 +28,7 @@ class LoginController extends Controller
         
     }
     
-    public function create()
-    {
-        $attributes= request()->validate([
-             'username'=>'required|min:4',
-             'password'=>'required|min:6',
-             'email'=>'required'
-        ]);
-
-         $attributes['password']=>bcrypt($attributes['password']);
-
-        User::create($attributes);
     
- 
-    }
     public function show()
     {
     

@@ -9,6 +9,8 @@
 
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="http://fonts.cdnfonts.com/css/sansation" rel="stylesheet">
+
 
 
 
@@ -18,7 +20,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Nunito", sans-serif;
+            font-family: "Sansation", sans-serif;
         }
 
         html {

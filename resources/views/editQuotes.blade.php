@@ -16,7 +16,7 @@
             <div class="flex flex-col gap-8 w-full">
                 <div class="flex flex-col relative">
                     <label for="movie_id" class="block mb-2 uppercase font-bold text-lg text-white">Movie</label>
-                    <select type="text" name="movie_id" id="movie_id" value="{{ $quote->movie->name }}"
+                    <select type="text" name="movie_id" id="movie_id"
                         class="p-2 w-full rounded-lg h-16 max-h-32 font-semibold text-xl" required>
                         @foreach ($allMovie as $movie)
                             <option>{{ $movie->name }}</option>
