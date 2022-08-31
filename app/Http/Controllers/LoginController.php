@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    public function show()
-    {
-        return view('login');
-    }
+    // public function show()
+    // {
+    //     return view('login');
+    // }
     public function store()
     {
            $attributes= request()->validate([
@@ -31,14 +31,8 @@ class LoginController extends Controller
     public function create()
     {
     
+      return view('login');
  
- 
- return view('login');
- 
-//    auth()->login()
- 
-    // session()->flash('success','Movie has been added.');
-    // return redirect('/add/movie')->with('success','You have been logged');
     }
 
     public function destroy(){

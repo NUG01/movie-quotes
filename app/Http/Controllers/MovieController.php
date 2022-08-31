@@ -35,13 +35,10 @@ class MovieController extends Controller
    ]);
 
 
-   // Movie::create($attributes);
-
    Movie::create([
       'name' => $attributes['name'],
   ]);  
 
-   // session()->flash('success','Movie has been added.');
    return redirect('/add/movie')->with('success','Movie has been added');
    }
 
