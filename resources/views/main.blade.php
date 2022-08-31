@@ -5,6 +5,11 @@
 
     <body class="flex h-screen justify-center">
 
+        <a href="/" class="absolute top-0 left-0 translate-y-1/2 translate-x-3/4">
+            <ion-icon name="refresh-outline" class="text-7xl text-white hover:drop-shadow-xl">
+            </ion-icon>
+        </a>
+
         @auth
             <div class="flex flex-col absolute top-0 right-0 translate-y-2/4 -translate-x-2/4 gap-12">
                 <form method="POST" action="/logout" class="order-2">
