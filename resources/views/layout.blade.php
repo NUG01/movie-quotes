@@ -50,7 +50,15 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
+
+        input[type=text],
+        input[type=password],
+        textarea[type=text] {
+            font-size: 1.6rem;
+            color: rgb(54, 54, 54);
+        }
     </style>
+
 
     @vite('resources/css/app.css')
     <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
@@ -59,5 +67,8 @@
 </head>
 
 @yield('content')
+
+
+
 
 </html>
