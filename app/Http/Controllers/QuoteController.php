@@ -6,18 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\Quote;
 use App\Models\Movie;
 use App\Http\Controllers\MovieController;
+use App\Http\Requests\StorePostRequest;
+
 
 class QuoteController extends Controller
 {
 
 
 public function show(){
-    if(!auth()->guest()){
-
+   
         return view('addQuote',['quotes'=>Quote::all(),'allMovie'=>Movie::all()]);
-    }else{
-        abort(404);
-    }
+   
 }
 
     
@@ -28,26 +27,29 @@ public function show(){
 
 
 
-    public function store()
+    public function store(StorePostRequest $request)
    {
-   
-        if (request()->file('thumbnail') == null) {
-        $file = "";
-    }else{
-         $file = request()->file('thumbnail')->store('thumbnails');  }
 
-        $attributes= request()->validate([
-             'movie_id'=>'required',
-             'quote'=>'required|max:255|min:7|unique:quotes,quote',
-             'thumbnail'=>'required|image'
-    ]);
+   $request->validated();
+
+
+        if ($request->file('thumbnail') == null) {
+        $thumbnail = "";
+    }else{
+         $thumbnail = request()->file('thumbnail')->store('thumbnails');  
+        }
+
+         $attributes= $request->validate([
+              'movie_id'=>'required',
+              'quote'=>'required|max:255|min:7|unique:quotes,quote',
+              'thumbnail'=>'required|image'
+        ]);
     
-          $attributes['thumbnail']=$file;
+          $attributes['thumbnail']=$thumbnail;
           $attributes['movie_id']=Movie::where('name',$attributes['movie_id'])->first()->id;
 
  
-Quote::create($attributes);  
-   // session()->flash('success','Movie has been added.');
+       Quote::create($attributes);  
    return redirect('/add/quote')->with('success','Quote has been added');
 }
 

@@ -2,6 +2,7 @@
 
 return [
 	'Log_out' => 'Log Out',
+	'Log_in' => 'Log In',
 	'movie_name' => 'Movie Name',
 	'add_movie' => 'Add Movie',
 	'add_quote' => 'Add quote',

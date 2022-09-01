@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Movie;
 use App\Http\Controllers\DB;
+use App\Http\Requests\StoreMovieRequest;
 
 class MovieController extends Controller
 {
@@ -18,22 +19,18 @@ class MovieController extends Controller
 
    public function show()
    {
-      $unique = Movie::all()->unique('name');
-      if(!auth()->guest()){
-
-         return view('addMovie', ['movies'=>$unique,'forTable'=>Movie::all()]);
-      }else{
-         abort(404);
-      }
+      $movies = Movie::all()->unique('name');
+     return view('addMovie', ['movies'=>$movies,'forTable'=>Movie::all()]);
+     
    }
    
 
 
 
-   public function store()
+   public function store(StoreMovieRequest $request)
    {
 
-       $attributes= request()->validate([
+       $attributes= $request->validate([
        'name'=>'required|unique:movies'
    ]);
 
@@ -48,11 +45,11 @@ class MovieController extends Controller
    public function edit(Movie $movie)
 {
   
-    return view('editMovie',['movie'=>$movie,'allMovie'=>Movie::all()]);
+    return view('editMovie',['movie'=>$movie,'movies'=>Movie::all()]);
 }
 
     public function update(Movie $movie){
-   
+   //StoreMovieRequest $request
       $attributes= request()->validate([
          'name'=>'required|unique:movies'
         ]);

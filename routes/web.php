@@ -21,32 +21,33 @@ use Illuminate\Support\Facades\App;
 |
 */
 
-Route::get('/', [MainController::class,'show']);
-Route::get('quotes/{slug}', [MainController::class,'showQuotes']);
+Route::get('/', [MainController::class,'index'])->name('show.main');
+Route::get('/quotes/{slug}', [MainController::class,'show'])->name('show.quotes');
 
 Route::get('/change-locale/{locale}', [LanguageController::class,'locale'])->name('locale.change');
 
 
-Route::get('add/movie',[MovieController::class,'show']);
-Route::post('add/movie',[MovieController::class,'store']);
+Route::get('/add/movie',[MovieController::class,'show'])->middleware('admin')->name('show.add.movie');
+Route::post('/add/movie',[MovieController::class,'store'])->middleware('admin')->name('add.movie');
 
 
-Route::post('add/quote',[QuoteController::class,'store']);
-Route::get('add/quote',[QuoteController::class, 'show']);
+Route::get('/add/quote',[QuoteController::class, 'show'])->middleware('admin')->name('show.add.quote');
+Route::post('/add/quote',[QuoteController::class,'store'])->middleware('admin')->name('add.quote');
 
 
-Route::get('login',[LoginController::class,'show']);
-Route::post('login',[LoginController::class,'store']);
+
+Route::get('/login',[LoginController::class,'show'])->middleware('guest')->name('show.login');
+Route::post('/login',[LoginController::class,'store'])->middleware('guest')->name('store.login');
 
 
-Route::post('logout',[LoginController::class,'destroy'])->middleware('auth');
+Route::post('/logout',[LoginController::class,'destroy'])->middleware('admin')->name('logout');
 
-Route::delete('admin/quotes/{quote}',[QuoteController::class,'destroy'])->middleware('auth');
-Route::delete('admin/movies/{movie}',[MovieController::class,'destroy'])->middleware('auth');
+Route::delete('/admin/quotes/{quote}',[QuoteController::class,'destroy'])->middleware('admin')->name('delete.quote');
+Route::delete('/admin/movies/{movie}',[MovieController::class,'destroy'])->middleware('admin')->name('delete.movie');
 
 
-Route::get('admin/quotes/{quote}/edit',[QuoteController::class,'edit'])->middleware('auth');
-Route::patch('admin/quotes/{quote}',[QuoteController::class,'update'])->middleware('auth');
+Route::get('/admin/quotes/{quote}/edit',[QuoteController::class,'edit'])->middleware('admin')->name('edit.quote');
+Route::patch('/admin/quotes/{quote}',[QuoteController::class,'update'])->middleware('admin')->name('change.quote');
 
-Route::get('admin/movies/{movie}/edit',[MovieController::class,'edit'])->middleware('auth');
-Route::patch('admin/movies/{movie}',[MovieController::class,'update'])->middleware('auth');
+Route::get('/admin/movies/{movie}/edit',[MovieController::class,'edit'])->middleware('admin')->name('edit.movie');
+Route::patch('/admin/movies/{movie}',[MovieController::class,'update'])->middleware('admin')->name('update.movie');

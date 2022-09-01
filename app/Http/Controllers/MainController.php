@@ -8,7 +8,7 @@ use App\Models\Movie;
 
 class MainController extends Controller
 {
-    public function show()
+    public function index()
     {
 
     if(Movie::all()->count()){
@@ -17,8 +17,7 @@ class MainController extends Controller
 		return 'Database is empty :)';
 	}
    }
-   public function showQuotes($slug)
-   {
+   public function show($slug){
         return view('movies', ['movies'=>Movie::all(), 'slug'=>$slug]);
    }
 }

@@ -12,7 +12,7 @@ class RegisterNewUser extends Command
      *
      * @var string
      */
-    protected $signature = 'create:user';
+    protected $signature = 'register:new-user';
 
     /**
      * The console command description.

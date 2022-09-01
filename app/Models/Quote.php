@@ -10,13 +10,10 @@ class Quote extends Model
     use HasFactory;
 
     
-    protected $fillable = [
-		'movie_id',
-		'quote',
-		'thumbnail',
-	];
+    protected $guarded=['id'];
 
-    public function movie(){
+    public function movie()
+    {
         return	$this->belongsTo(Movie::class);
         }
 }

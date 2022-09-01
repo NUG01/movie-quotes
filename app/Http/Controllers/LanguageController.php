@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\App;
 
 class LanguageController extends Controller
 {
-   public function locale(string $locale)
+   public function locale(string $locale): RedirectResponse
    {
         if(in_array($locale, config('app.available_locales'))){
             session()->put('lang',$locale);
