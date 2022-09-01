@@ -7,43 +7,41 @@ use App\Models\Quote;
 use App\Models\Movie;
 use App\Http\Controllers\MovieController;
 use App\Http\Requests\StorePostRequest;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\View;
 
 
 class QuoteController extends Controller
 {
 
 
-public function show(){
+public function show(): View
+{
    
         return view('addQuote',['quotes'=>Quote::all(),'allMovie'=>Movie::all()]);
    
 }
 
     
-    public function destroy(Quote $quote){
+    public function destroy(Quote $quote): RedirectResponse
+    {
         $quote->delete();
         return redirect('/add/quote')->with('success','Quote has been deleted');
 }
 
 
 
-    public function store(StorePostRequest $request)
+    public function store(StorePostRequest $request): RedirectResponse
    {
 
-   $request->validated();
+  $attributes= $request->validated();
 
 
         if ($request->file('thumbnail') == null) {
         $thumbnail = "";
     }else{
-         $thumbnail = request()->file('thumbnail')->store('thumbnails');  
-        }
-
-         $attributes= $request->validate([
-              'movie_id'=>'required',
-              'quote'=>'required|max:255|min:7|unique:quotes,quote',
-              'thumbnail'=>'required|image'
-        ]);
+         $thumbnail = $request->file('thumbnail')->store('thumbnails');  
+     }
     
           $attributes['thumbnail']=$thumbnail;
           $attributes['movie_id']=Movie::where('name',$attributes['movie_id'])->first()->id;
@@ -53,23 +51,20 @@ public function show(){
    return redirect('/add/quote')->with('success','Quote has been added');
 }
 
-public function edit(Quote $quote)
+public function edit(Quote $quote): View
 {
     return view('editQuotes',['quote'=>$quote,'allMovie'=>Movie::all()]);
 }
 
-    public function update(Quote $quote){
-         
-    if (request()->file('thumbnail') == null) {
+    public function update(Quote $quote, StorePostRequest $request): RedirectResponse
+    {
+         $attributes=$request->validated();
+    if ($request->file('thumbnail') == null) {
         $file = $quote->thumbnail;
     }else{
-       $file = request()->file('thumbnail')->store('thumbnails');  }
+       $file = $request->file('thumbnail')->store('thumbnails');  }
 
-       $attributes= request()->validate([
-           'movie_id'=>'required',
-            'quote'=>'required|max:255|min:7|unique:quotes,quote',
-            'thumbnail'=>'image'
-        ]);
+      
 
         $attributes['thumbnail']=$file;
         $attributes['movie_id']=Movie::where('name',$attributes['movie_id'])->first()->id;

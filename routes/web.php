@@ -6,7 +6,7 @@ use App\Models\Quote;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\MainController;
+use App\Http\Controllers\ViewController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\App;
 
@@ -21,13 +21,13 @@ use Illuminate\Support\Facades\App;
 |
 */
 
-Route::get('/', [MainController::class,'index'])->name('show.main');
-Route::get('/quotes/{slug}', [MainController::class,'show'])->name('show.quotes');
+Route::get('/', [ViewController::class,'index'])->name('show.main');
+Route::get('/quotes/{slug}', [ViewController::class,'show'])->name('show.quotes');
 
 Route::get('/change-locale/{locale}', [LanguageController::class,'locale'])->name('locale.change');
 
 
-Route::get('/add/movie',[MovieController::class,'show'])->middleware('admin')->name('show.add.movie');
+Route::get('/add/movie',[MovieController::class,'show'])->middleware('admin')->name('show.movie');
 Route::post('/add/movie',[MovieController::class,'store'])->middleware('admin')->name('add.movie');
 
 

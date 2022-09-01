@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Quote;
 use App\Models\Movie;
+use Illuminate\Contracts\View\View;
 
-class MainController extends Controller
+class ViewController extends Controller
 {
-    public function index()
+    public function index(): View
     {
 
     if(Movie::all()->count()){
@@ -17,7 +18,8 @@ class MainController extends Controller
 		return 'Database is empty :)';
 	}
    }
-   public function show($slug){
+   public function show($slug): View
+   {
         return view('movies', ['movies'=>Movie::all(), 'slug'=>$slug]);
    }
 }
