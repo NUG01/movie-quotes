@@ -60,7 +60,7 @@
             text-white text-center mt-12">"{{ $movies->quote }}"
                 </p>
                 <h2 class="text-7xl text-white text-center mt-28 underline underline-offset-4"><a
-                        href='/quotes/{{ $movies->movie->name }}'>{{ $movies->movie->name }}</a></h2>
+                        href='/quotes/{{ $movies->movie->id }}'>{{ $movies->movie->name }}</a></h2>
 
             </div>
             <x-languages></x-languages>
