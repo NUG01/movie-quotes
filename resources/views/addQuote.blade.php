@@ -3,7 +3,6 @@
 @section('content')
 
     <body class="flex flex-col gap-64 h-screen justify-center items-center">
-
         <x-arrow></x-arrow>
 
         <form method="POST" action="/add/quote" enctype="multipart/form-data" class="flex items-center w-[20%]">
