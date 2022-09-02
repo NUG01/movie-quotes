@@ -9,7 +9,7 @@ use Illuminate\Contracts\View\View;
 
 class ViewController extends Controller
 {
-    public function index(): View
+    public function index()
     {
 
     if(Movie::all()->count()){

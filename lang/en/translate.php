@@ -16,5 +16,7 @@ return [
   'quotes'=>'quotes',
   'username'=>'username',
   'password'=>'password',
+  'eng'=>'en',
+  'ka'=>'ka',
 
 ];

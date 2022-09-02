@@ -25,7 +25,8 @@ class StorePostRequest extends FormRequest
     {
         return [
             'movie_id'=>'required',
-            'quote'=>'required|max:255|min:7|unique:quotes,quote',
+            'quote_en'=>'required|max:255|min:7|unique:quotes,quote',
+            'quote_ka'=>'required|max:255|min:7|unique:quotes,quote',
             'thumbnail'=>'required|image'
 
         ];

@@ -34,20 +34,20 @@ public function show(): View
     public function store(StorePostRequest $request): RedirectResponse
    {
 
-  $attributes= $request->validated();
-
-
-        if ($request->file('thumbnail') == null) {
+    $quote=new Quote();
+    
+    
+    $quote->setTranslation('quote','en',$request->validated()['quote_en']);
+    $quote->setTranslation('quote','ka',$request->validated()['quote_ka']);
+   
+    if ($request->file('thumbnail') == null) {
         $thumbnail = "";
     }else{
-         $thumbnail = $request->file('thumbnail')->store('thumbnails');  
-     }
-    
-          $attributes['thumbnail']=$thumbnail;
-          $attributes['movie_id']=Movie::where('name',$attributes['movie_id'])->first()->id;
-
- 
-       Quote::create($attributes);  
+        $thumbnail = $request->file('thumbnail')->store('thumbnails');  
+    }
+   $quote['thumbnail']=$thumbnail;
+  $quote['movie_id']=$request->validated()['movie_id'];
+       $quote->save();
    return redirect('/add/quote')->with('success','Quote has been added');
 }
 
@@ -58,18 +58,20 @@ public function edit(Quote $quote): View
 
     public function update(Quote $quote, StorePostRequest $request): RedirectResponse
     {
-         $attributes=$request->validated();
-    if ($request->file('thumbnail') == null) {
-        $file = $quote->thumbnail;
-    }else{
-       $file = $request->file('thumbnail')->store('thumbnails');  }
 
-      
-
-        $attributes['thumbnail']=$file;
-        $attributes['movie_id']=Movie::where('name',$attributes['movie_id'])->first()->id;
         
-        $quote->update($attributes);
+    
+        $quote->setTranslation('quote','en',$request->validated()['quote_en']);
+        $quote->setTranslation('quote','ka',$request->validated()['quote_ka']);
+     
+        if ($request->file('thumbnail') == null) {
+            $thumbnail = "";
+        }else{
+            $thumbnail = $request->file('thumbnail')->store('thumbnails');  
+        }
+       $quote['thumbnail']=$thumbnail;
+      $quote['movie_id']=$request->validated()['movie_id'];
+      $quote->update();
         
         return redirect('/add/quote')->with('success','Quote has been updated!');
    }

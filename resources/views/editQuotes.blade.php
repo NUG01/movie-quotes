@@ -20,7 +20,7 @@
                     <select type="text" name="movie_id" id="movie_id"
                         class="p-2 w-full rounded-lg h-16 max-h-32 font-semibold text-xl" required>
                         @foreach ($allMovie as $movie)
-                            <option>{{ $movie->name }}</option>
+                            <option value="{{ $movie->id }}">{{ $movie->name }}</option>
                         @endforeach
 
                     </select>
@@ -29,11 +29,22 @@
                     @enderror
                 </div>
                 <div class="flex flex-col relative">
-                    <label for="quote"
-                        class="block mb-2 uppercase font-semibold text-2xl text-gray-800">{{ __('translate.quote') }}</label>
-                    <textarea type="text" name="quote" id="quote" class="p-2 w-full rounded-lg h-16 max-h-32 font-semibold text-xl"
-                        required></textarea>
-                    @error('quote')
+                    <label for="quote_en"
+                        class="block mb-2 uppercase font-semibold text-2xl text-gray-800">{{ __('translate.quote') }}
+                        ({{ __('translate.eng') }})</label>
+                    <textarea type="text" name="quote_en" id="quote_en"
+                        class="p-2 w-full rounded-lg h-16 max-h-32 font-semibold text-xl" required></textarea>
+                    @error('quote_en')
+                        <p class="text-red-500 text-lg mt-1 absolute bottom-0 left-0 translate-y-full">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="flex flex-col relative">
+                    <label for="quote_ka"
+                        class="block mb-2 uppercase font-semibold text-2xl text-gray-800">{{ __('translate.quote') }}
+                        ({{ __('translate.ka') }})</label>
+                    <textarea type="text" name="quote_ka" id="quote_ka"
+                        class="p-2 w-full rounded-lg h-16 max-h-32 font-semibold text-xl" required></textarea>
+                    @error('quote_ka')
                         <p class="text-red-500 text-lg mt-1 absolute bottom-0 left-0 translate-y-full">{{ $message }}</p>
                     @enderror
                 </div>

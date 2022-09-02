@@ -5,15 +5,26 @@
     <body class="flex flex-col gap-64 h-screen justify-center items-center">
         <x-arrow></x-arrow>
 
-        <form method="POST" action="/add/movie" enctype="multipart/form-data" class="flex items-center w-[20%]">
+        <form method="POST" action="/add/movie" class="flex items-center w-[20%]">
             @csrf
             <div class="flex flex-col gap-8 w-full bg-gray-400 p-12 rounded-xl drop-shadow-2xl">
                 <div class="flex flex-col relative">
-                    <label for="name"
-                        class="block mb-2 uppercase font-semibold text-2xl text-gray-800">{{ __('translate.movie_name') }}</label>
-                    <input type="text" name="name" id="name"
+                    <label for="name_en"
+                        class="block mb-2 uppercase font-semibold text-2xl text-gray-800">{{ __('translate.movie_name') }}
+                        ({{ __('translate.eng') }})</label>
+                    <input type="text" name="name_en" id="name_en"
                         class="p-2 w-full rounded-lg h-16 font-semibold text-xl" required>
-                    @error('name')
+                    @error('name_en')
+                        <p class="text-red-500 text-lg mt-1 absolute bottom-0 left-0 translate-y-full">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="flex flex-col relative">
+                    <label for="name_ka"
+                        class="block mb-2 uppercase font-semibold text-2xl text-gray-800">{{ __('translate.movie_name') }}
+                        ({{ __('translate.ka') }})</label>
+                    <input type="text" name="name_ka" id="name_ka"
+                        class="p-2 w-full rounded-lg h-16 font-semibold text-xl" required>
+                    @error('name_ka')
                         <p class="text-red-500 text-lg mt-1 absolute bottom-0 left-0 translate-y-full">{{ $message }}</p>
                     @enderror
                 </div>

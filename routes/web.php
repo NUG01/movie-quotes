@@ -31,6 +31,8 @@ Route::get('/add/movie',[MovieController::class,'show'])->middleware('admin')->n
 Route::post('/add/movie',[MovieController::class,'store'])->middleware('admin')->name('add.movie');
 
 
+
+
 Route::get('/add/quote',[QuoteController::class, 'show'])->middleware('admin')->name('show.add.quote');
 Route::post('/add/quote',[QuoteController::class,'store'])->middleware('admin')->name('add.quote');
 
@@ -40,14 +42,19 @@ Route::get('/login',[LoginController::class,'show'])->middleware('guest')->name(
 Route::post('/login',[LoginController::class,'store'])->middleware('guest')->name('store.login');
 
 
+
 Route::post('/logout',[LoginController::class,'destroy'])->middleware('admin')->name('logout');
 
+
 Route::delete('/admin/quotes/{quote}',[QuoteController::class,'destroy'])->middleware('admin')->name('delete.quote');
-Route::delete('/admin/movies/{movie}',[MovieController::class,'destroy'])->middleware('admin')->name('delete.movie');
+Route::delete('/admin/movies/{movie}',[MovieController::class,'destroy'])->middleware('admin')->name('delete.movie');             
+         
 
 
 Route::get('/admin/quotes/{quote}/edit',[QuoteController::class,'edit'])->middleware('admin')->name('edit.quote');
 Route::patch('/admin/quotes/{quote}',[QuoteController::class,'update'])->middleware('admin')->name('change.quote');
+
+
 
 Route::get('/admin/movies/{movie}/edit',[MovieController::class,'edit'])->middleware('admin')->name('edit.movie');
 Route::patch('/admin/movies/{movie}',[MovieController::class,'update'])->middleware('admin')->name('update.movie');
