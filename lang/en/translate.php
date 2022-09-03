@@ -18,5 +18,4 @@ return [
   'password'=>'password',
   'eng'=>'en',
   'ka'=>'ka',
-
 ];

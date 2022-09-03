@@ -12,10 +12,8 @@ class LoginController extends Controller
   
     public function store(StoreUserRequest $request): RedirectResponse
     {
-
-        $attributes= $request->validated();
         
-        if(auth()->attempt($attributes)){
+        if(auth()->attempt($request->validated())){
                 session()->regenerate();
                   return redirect('/')->with('success','You have been logged in');
         }

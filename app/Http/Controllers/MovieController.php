@@ -55,8 +55,6 @@ class MovieController extends Controller
       $movie->setTranslation('name','en',$request->validated()['name_en']);
       $movie->setTranslation('name','ka',$request->validated()['name_ka']);
       $movie->update();
-      
-   //   dd($movie);
      
      return redirect('/add/movie')->with('success','Movie has been updated!');
    }

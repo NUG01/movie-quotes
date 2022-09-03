@@ -45,9 +45,9 @@ public function show(): View
     }else{
         $thumbnail = $request->file('thumbnail')->store('thumbnails');  
     }
-   $quote['thumbnail']=$thumbnail;
-  $quote['movie_id']=$request->validated()['movie_id'];
-       $quote->save();
+        $quote['thumbnail']=$thumbnail;
+        $quote['movie_id']=$request->validated()['movie_id'];
+        $quote->save();
    return redirect('/add/quote')->with('success','Quote has been added');
 }
 
@@ -69,9 +69,9 @@ public function edit(Quote $quote): View
         }else{
             $thumbnail = $request->file('thumbnail')->store('thumbnails');  
         }
-       $quote['thumbnail']=$thumbnail;
-      $quote['movie_id']=$request->validated()['movie_id'];
-      $quote->update();
+             $quote['thumbnail']=$thumbnail;
+             $quote['movie_id']=$request->validated()['movie_id'];
+             $quote->update();
         
         return redirect('/add/quote')->with('success','Quote has been updated!');
    }
