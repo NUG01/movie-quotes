@@ -23,7 +23,7 @@ class MovieController extends Controller
    {
          
          $movies = Movie::all()->unique('name');
-         return view('addMovie', ['movies'=>$movies,'forTable'=>Movie::all()]);
+         return view('addMovie', ['movies'=>$movies,'movieNames'=>Movie::all()]);
       }
       
    

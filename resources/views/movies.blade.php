@@ -6,8 +6,8 @@
         <x-arrow></x-arrow>
         <div class="w-2/5 flex justify-start flex-col gap-12 mt-4 overflow-scroll scrollHide">
             <h2 class="text-7xl text-white mt-16 self-start mb-12 pt-12 pl-1 pr-6 pb-12">
-                {{ $movies->where('id', $slug)->first()['name'] }}</h2>
-            @foreach ($movies->where('id', $slug)->first()->quote as $movie)
+                {{ $movies['name'] }}</h2>
+            @foreach ($movies->quote as $movie)
                 <div class="self-start w-full h-fit rounded-tr-xl rounded-tl-xl rounded-br-xl rounded-bl-xl grid mb-14">
                     <div class="w-full h-full rounded-tr-xl rounded-tl-xl bck"
                         style="background-image: url('/storage/{{ $movie->thumbnail }}')">

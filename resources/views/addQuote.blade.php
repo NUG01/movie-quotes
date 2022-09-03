@@ -15,7 +15,7 @@
                         class="block mb-2 uppercase font-semibold text-2xl text-gray-800">{{ __('translate.movie') }}</label>
                     <select type="text" name="movie_id" id="movie_id"
                         class="p-2 w-full rounded-lg h-16 max-h-32 font-semibold text-xl" required>
-                        @foreach ($allMovie as $movie)
+                        @foreach ($movies as $movie)
                             <option value="{{ $movie->id }}">{{ $movie->name }}</option>
                         @endforeach
 

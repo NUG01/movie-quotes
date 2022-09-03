@@ -19,7 +19,7 @@ class QuoteController extends Controller
 public function show(): View
 {
    
-        return view('addQuote',['quotes'=>Quote::all(),'allMovie'=>Movie::all()]);
+        return view('addQuote',['quotes'=>Quote::all(),'movies'=>Movie::all()]);
    
 }
 

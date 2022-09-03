@@ -20,6 +20,6 @@ class MainPageController extends Controller
    }
    public function show($slug): View
    {
-        return view('movies', ['movies'=>Movie::all(), 'slug'=>$slug]);
+        return view('movies', ['movies'=>Movie::all()->where('id', $slug)->first(), 'slug'=>$slug,]);
    }
 }
