@@ -20,8 +20,8 @@
                     <label for="name_en"
                         class="block mb-2 uppercase font-semibold text-2xl
                         text-gray-800">{{ __('translate.eng') }}</label>
-                    <input type="text" name="name_en" value="{{ $movie->name }}"
-                        class="border border-gray-400 p-2 w-full rounded-lg h-16" id="name_en">
+                    <input type="text" name="name_en" class="border border-gray-400 p-2 w-full rounded-lg h-16"
+                        id="name_en">
 
                     @error('name_en')
                         <p class="text-red-500 text-lg mt-1 absolute bottom-0 left-0 translate-y-full">{{ $message }}</p>

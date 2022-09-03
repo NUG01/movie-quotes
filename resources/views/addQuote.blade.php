@@ -9,6 +9,8 @@
             @csrf
             <div class="flex flex-col gap-8 w-full bg-gray-400 p-12 rounded-xl drop-shadow-2xl">
                 <div class="flex flex-col relative">
+
+
                     <label for="movie_id"
                         class="block mb-2 uppercase font-semibold text-2xl text-gray-800">{{ __('translate.movie') }}</label>
                     <select type="text" name="movie_id" id="movie_id"

@@ -7,6 +7,7 @@ use App\Models\Quote;
 use App\Models\Movie;
 use App\Http\Controllers\MovieController;
 use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdateQuoteRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\View;
 
@@ -56,16 +57,16 @@ public function edit(Quote $quote): View
     return view('editQuotes',['quote'=>$quote,'allMovie'=>Movie::all()]);
 }
 
-    public function update(Quote $quote, StorePostRequest $request): RedirectResponse
+    public function update(Quote $quote, UpdateQuoteRequest $request): RedirectResponse
     {
 
         
     
         $quote->setTranslation('quote','en',$request->validated()['quote_en']);
         $quote->setTranslation('quote','ka',$request->validated()['quote_ka']);
-     
+   
         if ($request->file('thumbnail') == null) {
-            $thumbnail = "";
+            $thumbnail = $quote->thumbnail;
         }else{
             $thumbnail = $request->file('thumbnail')->store('thumbnails');  
         }
