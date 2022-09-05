@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\App;
 |
 */
 
+
 Route::get('/change-locale/{locale}', [LanguageController::class,'locale'])->name('locale.change');
 
 Route::controller(MainPageController::class)->group(function () {
