@@ -2,8 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Movie;
+use App\Models\Quote;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MainPageController;
+use App\Http\Controllers\LanguageController;
+use Illuminate\Support\Facades\App;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,27 +21,51 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::get('/', function () {
-	// return view('main',['movies'=>Movie::inRandomOrder()->get()]);
-	// $quantity = Movie::count();
-	return view('main', ['movies'=>Movie::all()->random()]);
+
+Route::get('/change-locale/{locale}', [LanguageController::class,'locale'])->name('locale.change');
+
+Route::controller(MainPageController::class)->group(function () {
+	Route::get('/','index')->name('show.main');
+	Route::get('/quotes/{slug}','show')->name('show.quotes');
+
 });
-Route::get('quotes/{slug}', function ($slug) {
-	// dd($slug);
-	return view('movies', ['movies'=>Movie::all(), 'slug'=>$slug]);
+
+Route::group(['middleware' => ['guest']], function () {
+	Route::get('/login',[LoginController::class,'show'])->name('show.login');
+	Route::post('/login',[LoginController::class,'store'])->name('store.login');
+});
+
+Route::group(['middleware' => ['admin']], function () {
+	Route::controller(MovieController::class)->group(function () {
+		Route::get('/add/movie','show')->name('show.movie');
+		Route::post('/add/movie','store')->name('add.movie');
+		Route::delete('/admin/movies/{movie}','destroy')->name('delete.movie');             
+		Route::get('/admin/movies/{movie}/edit','edit')->name('edit.movie');
+		Route::patch('/admin/movies/{movie}','update')->name('update.movie');
+		
+});
+	Route::controller(QuoteController::class)->group(function () {
+		Route::get('/add/quote','show')->name('show.add.quote');
+		Route::post('/add/quote','store')->name('add.quote');
+		Route::delete('/admin/quotes/{quote}','destroy')->name('delete.quote');
+		Route::get('/admin/quotes/{quote}/edit','edit')->name('edit.quote');
+		Route::patch('/admin/quotes/{quote}','update')->name('change.quote');
+	
+		
+});
+    Route::post('/logout',[LoginController::class,'destroy'])->name('logout');
 });
 
 
 
 
-Route::get('add/movie',[MovieController::class,'show']);
-Route::post('add/movie',[MovieController::class,'store']);
 
 
-Route::get('login',[LoginController::class,'create'])->middleware('guest');
-Route::post('login',[LoginController::class,'store'])->middleware('guest');
 
 
-Route::post('logout',[LoginController::class,'destroy'])->middleware('auth');
+
+         
+
+
 
 
