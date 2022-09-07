@@ -6,63 +6,73 @@ use Illuminate\Http\Request;
 use App\Models\Quote;
 use App\Models\Movie;
 use App\Http\Controllers\MovieController;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdateQuoteRequest;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\View;
+
 
 class QuoteController extends Controller
 {
+
+
+public function show(): View
+{
+   
+        return view('addQuote',['quotes'=>Quote::all(),'movies'=>Movie::all()]);
+   
+}
+
     
-    public function destroy(Quote $quote){
+    public function destroy(Quote $quote): RedirectResponse
+    {
         $quote->delete();
         return redirect('/add/quote')->with('success','Quote has been deleted');
 }
 
 
 
-    public function store()
+    public function store(StorePostRequest $request): RedirectResponse
    {
-   
-    if (request()->file('thumbnail') == null) {
-        $file = "";
-    }else{
-       $file = request()->file('thumbnail')->store('thumbnails');  }
 
-//    $path=request()->file('thumbnail')->store('thumbnails'); 
-$attributes= request()->validate([
-    'movie_id'=>'required',
-     'quote'=>'required|max:255|min:7|unique:quotes,quote',
-     'thumbnail'=>'required|image'
-    ]);
+    $quote=new Quote();
     
-    $attributes['thumbnail']=$file;
-   $attributes['movie_id']=Movie::where('name',$attributes['movie_id'])->first()->id;
-// dd($attributes['movie_id']);
- 
-Quote::create($attributes);  
-   // session()->flash('success','Movie has been added.');
+    
+    $quote->setTranslation('quote','en',$request->validated()['quote_en']);
+    $quote->setTranslation('quote','ka',$request->validated()['quote_ka']);
+   
+    if ($request->file('thumbnail') == null) {
+        $thumbnail = "";
+    }else{
+        $thumbnail = $request->file('thumbnail')->store('thumbnails');  
+    }
+        $quote['thumbnail']=$thumbnail;
+        $quote['movie_id']=$request->validated()['movie_id'];
+        $quote->save();
    return redirect('/add/quote')->with('success','Quote has been added');
 }
 
-public function edit(Quote $quote)
+public function edit(Quote $quote): View
 {
     return view('editQuotes',['quote'=>$quote,'allMovie'=>Movie::all()]);
 }
 
-    public function update(Quote $quote){
-         
-    if (request()->file('thumbnail') == null) {
-        $file = $quote->thumbnail;
-    }else{
-       $file = request()->file('thumbnail')->store('thumbnails');  }
+    public function update(Quote $quote, UpdateQuoteRequest $request): RedirectResponse
+    {
 
-       $attributes= request()->validate([
-           'movie_id'=>'required',
-            'quote'=>'required|max:255|min:7|unique:quotes,quote',
-            'thumbnail'=>'image'
-        ]);
-
-        $attributes['thumbnail']=$file;
-        $attributes['movie_id']=Movie::where('name',$attributes['movie_id'])->first()->id;
         
-        $quote->update($attributes);
+    
+        $quote->setTranslation('quote','en',$request->validated()['quote_en']);
+        $quote->setTranslation('quote','ka',$request->validated()['quote_ka']);
+   
+        if ($request->file('thumbnail') == null) {
+            $thumbnail = $quote->thumbnail;
+        }else{
+            $thumbnail = $request->file('thumbnail')->store('thumbnails');  
+        }
+             $quote['thumbnail']=$thumbnail;
+             $quote['movie_id']=$request->validated()['movie_id'];
+             $quote->update();
         
         return redirect('/add/quote')->with('success','Quote has been updated!');
    }

@@ -4,19 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Translatable\HasTranslations;
 
 class Quote extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
+	public $translatable=['quote'];
     
-    protected $fillable = [
-		'movie_id',
-		'quote',
-		'thumbnail',
-	];
+    protected $guarded=['id'];
 
-    public function movie(){
+    public function movie(): BelongsTo
+    {
         return	$this->belongsTo(Movie::class);
         }
 }

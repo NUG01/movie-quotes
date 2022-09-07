@@ -3,45 +3,35 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUserRequest;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\View;
 
 class LoginController extends Controller
 {
-    public function show()
+  
+    public function store(StoreUserRequest $request): RedirectResponse
     {
-        return view('login');
-    }
-    public function store()
-    {
-           $attributes= request()->validate([
-             'username'=>'required',
-             'password'=>'required'
-            ]);
-
-            if(auth()->attempt($attributes)){
+        
+        if(auth()->attempt($request->validated())){
                 session()->regenerate();
                   return redirect('/')->with('success','You have been logged in');
-            }
+        }
 
-
-
-            return redirect("/login")->withErrors(['username'=>'Provided username could not be verified','password'=>"Provided password is wrong"]);
+       return redirect("/login")->withErrors(['username'=>'Provided username could not be verified','password'=>"Provided password is wrong"]);
         
     }
-
-    public function create()
+    
+    
+    public function show(): View
     {
     
+    return view('login');
  
- 
- return view('login');
- 
-//    auth()->login()
- 
-    // session()->flash('success','Movie has been added.');
-    // return redirect('/add/movie')->with('success','You have been logged');
     }
 
-    public function destroy(){
+    public function destroy(): RedirectResponse
+    {
        auth()->logout();
 
        return redirect('/')->with('success','Goodbye');
