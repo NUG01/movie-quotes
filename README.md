@@ -1,64 +1,121 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+#
+### Movie Quotes
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+"Movie Quotes" helps people to find out interesting movies, 
+it generates random movies, with quotes and images, added by admins, 
+if user likes generated movie, he/she can click on it where user will be redirected on the page, where can be seen all belonged quotes and images.
 
-## About Laravel
+As mentioned above, movies are added by admins, so app has two sides, user and admins, user can see random movies and its belonged quotes and images,
+on the admin side, there is admin panel, where movies and quotes with images can be seen seperately and where CRUD operations 
+can be done in easy and intuitive manner (CRUD-create,read,update,delete).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+User can log in as an admin from the main page if account has been created from custom artisan command, called "register:new-user".
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+#
+### Table of content
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. [Introduction](#Introduction)
+2. [Prerequisites](#Prerequisites)
+3. [Tech Stack](#Tech-Stack)
+4. [Getting Started](#Getting-Started)
+5. [Development](#Development)
+6. [Deployment](#Deployment)
+7. [Resources](#Resources)
 
-## Learning Laravel
+#
+### Prerequisites
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+* <img src="readme/assets/php.svg" width="35" style="position: relative; top: 4px" /> *PHP@8.0 and up*
+* <img src="readme/assets/sql.png" width="35" style="position: relative; top: 4px" /> *MYSQL@8 and up*
+* <img src="readme/assets/npm.png" width="35" style="position: relative; top: 4px" /> *npm@6 and up*
+* <img src="readme/assets/composer.png" width="35" style="position: relative; top: 6px" /> *composer@2 and up*
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+#
+### Tech Stack
 
-### Premium Partners
+* <img src="readme/assets/laravel.png" height="18" style="position: relative; top: 4px" /> [Laravel@6.x](https://laravel.com/docs/6.x) - back-end framework
+* <img src="readme/assets/spatie.png" height="19" style="position: relative; top: 4px" /> [Spatie Translatable](https://github.com/spatie/laravel-translatable) - package for translation
+* <img src="readme/assets/screenshot_361.png" height="19" style="position: relative; top: 4px" /> [Tailwindcss](github.com/tailwindlabs/tailwindcss) - css framework for styling
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
 
-## Contributing
+#
+### Getting Started
+1\. First of all you need to clone 'nugzar-skhiereli-movie-quotes' repository from github:
+```sh
+git clone https://github.com/RedberryInternship/nugzar-skhiereli-movie-quotes.git
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2\. Next step requires you to run *composer install* in order to install all the dependencies.
+```sh
+composer install
+```
 
-## Code of Conduct
+3\. after you have installed all the PHP dependencies, it's time to install all the JS dependencies:
+```sh
+npm install
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+and also:
+```sh
+npm run dev
+```
+in order to build your Tailwindcss resources.
 
-## Security Vulnerabilities
+4\. Now we need to set our env file. Go to the root of your project and execute this command.
+```sh
+cp .env.example .env
+```
+And now you should provide **.env** file all the necessary environment variables:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+5\. Now execute in the root of you project following:
+```sh
+  php artisan key:generate
+```
+Which generates auth key.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+##### Now, you should be good to go!
+
+
+
+#
+### Development
+
+You can run Laravel's built-in development server by executing:
+
+```sh
+  php artisan serve
+```
+
+when working on Tailwindcss you may run:
+
+```sh
+  npm run dev
+```
+it builds your Tailwindcss styling into executable CSS.
+
+
+#
+### Deployment
+<br/>
+
+!["nginx / php fpm"](./readme/assets/php-fpm-nginx.png)
+
+<br />
+
+- Projects first step is of course is development.
+ After some time of development when you are ready to integrate and deploy your feature/fix/work you start doing these actions:
+* Installing tools and programs on the server.
+* Downloading the Laravel project to the server.
+* PHP FPM configuration.
+* NGINX configuration.
+* Setting up SSL with LetsEncrypt.
+
+After these steps everything should be OK :pray:
+
+
+#
+### Resources
+!["nginx / php fpm"](./readme/assets/drawSQL-export-2022-09-07_16_51.png)
