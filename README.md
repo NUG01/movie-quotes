@@ -35,7 +35,7 @@ User can log in as an admin from the main page if account has been created from 
 #
 ### Tech Stack
 
-* <img src="readme/assets/laravel.png" height="18" style="position: relative; top: 4px" /> [Laravel@6.x](https://laravel.com/docs/9.x) - back-end framework
+* <img src="readme/assets/laravel.png" height="18" style="position: relative; top: 4px" /> [Laravel@9.x](https://laravel.com/docs/9.x) - back-end framework
 * <img src="readme/assets/spatie.png" height="19" style="position: relative; top: 4px" /> [Spatie Translatable](https://github.com/spatie/laravel-translatable) - package for translation
 * <img src="readme/assets/screenshot_361.png" height="19" style="position: relative; top: 4px" /> [Tailwindcss](github.com/tailwindlabs/tailwindcss) - css framework for styling
 
