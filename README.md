@@ -3,9 +3,9 @@
 
 "Movie Quotes" helps people to find out interesting movies, 
 it generates random movies, with quotes and images, added by admins, 
-if user likes generated movie, he/she can click on it where user will be redirected on the page, where can be seen all belonged quotes and images.
+if user likes generated movie, he/she can click on it where user will be redirected on the page, where can be seen all belonging quotes and images.
 
-As mentioned above, movies are added by admins, so app has two sides, user and admins, user can see random movies and its belonged quotes and images,
+As mentioned above, movies are added by admins, so app has two sides, users and admins, user can see random movies and its belonging quotes and images,
 on the admin side, there is admin panel, where movies and quotes with images can be seen seperately and where CRUD operations 
 can be done in easy and intuitive manner (CRUD-create,read,update,delete).
 
