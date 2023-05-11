@@ -3,7 +3,9 @@
 @section('content')
 
     <body class="flex h-screen justify-center">
-        <x-arrow></x-arrow>
+        @if(Request::url() === '/')
+    <x-arrow></x-arrow>
+@endif
 
         <form method="POST" action="/login" class="flex items-center w-[21%]">
             @csrf
